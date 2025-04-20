@@ -1,0 +1,51 @@
+/* Add slide-in animation effect to the registration form container */
+.form-container {
+    animation: slideIn 0.5s ease-in-out;
+}
+
+/* Define slide-in animation keyframes */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Registration page heading style */
+.form-container h1 {
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+/* Registration button style */
+#registerForm .btn {
+    background-color: #000;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+/* Registration button hover style */
+#registerForm .btn:hover {
+    background-color: #333;
+}
+
+/* Registration input focus style */
+#registerForm input:focus {
+    border-color: #1d9bf0;
+}
+
+/* Registration input field styles */
+#registerForm .form-group:nth-child(2),
+#registerForm .form-group:nth-child(3) {
+    position: relative;
+}
+
+/* Registration error message style */
+#register-error-message {
+    color: #e0245e;
+    font-weight: 500;
+}
