@@ -1,0 +1,22 @@
+[
+    {"city": "Perth", "lat": -31.9505, "lon": 115.8605},
+    {"city": "Geraldton", "lat": -28.7682, "lon": 114.6144},
+    {"city": "Carnarvon", "lat": -24.8802, "lon": 113.6576},
+    {"city": "Margaret River", "lat": -33.9530, "lon": 115.0731},
+    {"city": "Busselton", "lat": -33.6525, "lon": 115.3455},
+    {"city": "Bunbury", "lat": -33.3271, "lon": 115.6414},
+    {"city": "Albany", "lat": -35.0228, "lon": 117.8814},
+    {"city": "Denmark", "lat": -34.9614, "lon": 117.3530},
+    {"city": "Esperance", "lat": -33.8613, "lon": 121.8896},
+    {"city": "Manjimup", "lat": -34.2414, "lon": 116.1462},
+    {"city": "Collie", "lat": -33.3624, "lon": 116.1519},
+    {"city": "Narrogin", "lat": -32.9335, "lon": 117.1786},
+    {"city": "Katanning", "lat": -33.6918, "lon": 117.5528},
+    {"city": "Kalgoorlie", "lat": -30.7489, "lon": 121.4650},
+    {"city": "Augusta", "lat": -34.3115, "lon": 115.1595},
+    {"city": "Lancelin", "lat": -31.0176, "lon": 115.3303},
+    {"city": "Kellerberrin", "lat": -31.6333, "lon": 117.7167},
+    {"city": "Hyden", "lat": -32.4417, "lon": 118.8586},
+    {"city": "Northcliffe", "lat": -34.6380, "lon": 116.1255},
+    {"city": "Hopetoun", "lat": -33.9500, "lon": 120.1269}
+]
