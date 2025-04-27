@@ -103,6 +103,87 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Shared with me section -->
+                    <div class="shared-with-me">
+                        <h3 class="subsection-title">Shared With Me</h3>
+                        
+                        <!-- Filter and sort options -->
+                        <div class="filter-options">
+                            <div class="filter-group">
+                                <label for="filter-date">Filter by:</label>
+                                <select id="filter-date">
+                                    <option value="all">All time</option>
+                                    <option value="today">Today</option>
+                                    <option value="week">This week</option>
+                                    <option value="month">This month</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label for="sort-by">Sort by:</label>
+                                <select id="sort-by">
+                                    <option value="newest">Newest first</option>
+                                    <option value="oldest">Oldest first</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Shared items message center -->
+                        <div class="message-center" id="message-center">
+                            <!-- Example shared item (just an example) -->
+                            <div class="shared-item">
+                                <div class="shared-item-header">
+                                    <div class="shared-by">
+                                        <i class="fas fa-user-circle"></i>
+                                        <span class="user-name">Marcus Zhou</span>
+                                    </div>
+                                    <div class="shared-time">12 hours ago</div>
+                                </div>
+                                <div class="shared-item-content">
+                                    <div class="shared-thumbnail">
+                                        <img src="/api/placeholder/200/150" alt="Weather visualization">
+                                    </div>
+                                    <div class="shared-details">
+                                        <p class="shared-message">My CITS5505 got HD!</p>
+                                        <div class="shared-actions">
+                                            <button class="view-btn">
+                                                <i class="fas fa-eye"></i> View
+                                            </button>
+                                            <button class="download-btn">
+                                                <i class="fas fa-download"></i> Download
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Second example shared item -->
+                            <div class="shared-item">
+                                <div class="shared-item-header">
+                                    <div class="shared-by">
+                                        <i class="fas fa-user-circle"></i>
+                                        <span class="user-name">Canaan</span>
+                                    </div>
+                                    <div class="shared-time">Yesterday</div>
+                                </div>
+                                <div class="shared-item-content">
+                                    <div class="shared-thumbnail">
+                                        <img src="/api/placeholder/200/150" alt="Weather visualization">
+                                    </div>
+                                    <div class="shared-details">
+                                        <p class="shared-message">My CITS5505 got HD, too!</p>
+                                        <div class="shared-actions">
+                                            <button class="view-btn">
+                                                <i class="fas fa-eye"></i> View
+                                            </button>
+                                            <button class="download-btn">
+                                                <i class="fas fa-download"></i> Download
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </main>
             
