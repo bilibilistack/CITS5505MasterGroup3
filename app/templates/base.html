@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Weather App{% endblock %}</title>
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/chart/base.css') }}">
+    {% block extra_css %}{% endblock %}
+    <!-- Common JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    {% block extra_start_js %}{% endblock %}
+</head>
+<body>
+    <div class="weather-app">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>Weather App</h2>
+                <button id="toggle-sidebar" class="toggle-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+            <div class="sidebar-content">
+                <nav class="sidebar-nav">
+                    <a href="{{ url_for('homechart') }}" class="nav-item" id="nav-visualization">
+                        <i class="nav-icon home-icon"></i>
+                        <span class="nav-text">Home</span>
+                    </a>
+                    <a href="{{ url_for('upload') }}" class="nav-item" id="nav-upload">
+                        <i class="nav-icon upload-icon"></i>
+                        <span class="nav-text">Upload</span>
+                    </a>
+                    <a href="{{ url_for('share') }}" class="nav-item" id="nav-share">
+                        <i class="nav-icon share-icon"></i>
+                        <span class="nav-text">Share</span>
+                    </a>
+                    <a href="{{ url_for('auth.logout') }}" class="nav-item" id="nav-signout">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span class="nav-text">&nbsp;&nbsp;Sign Out</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Sidebar Toggle Button -->
+        <button id="show-sidebar" class="show-sidebar-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Content Wrapper -->
+        <div class="content-wrapper">
+            <!-- Header -->
+            <header class="header">
+                <h1 class="main-title">{% block header_title %}Weather App{% endblock %}</h1>
+                <p class="subtitle">{% block header_subtitle %}{% endblock %}</p>
+                <span id="selected-date"></span>
+            </header>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                {% block main_content %}{% endblock %}
+            </main>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <p>&copy; CITS5505 Group 3</p>
+            </footer>
+        </div>
+    </div>
+
+
+    {% block extra_end_js %}{% endblock %}
+</body>
+</html>

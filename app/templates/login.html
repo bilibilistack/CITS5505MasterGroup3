@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
     <!-- Import main stylesheet -->
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="{{ url_for( 'static', filename='login/main.css') }}">
     <!-- Import login-specific stylesheet -->
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="{{ url_for( 'static', filename='login/login.css') }}">
 </head>
 <body>
     <div class="container">
@@ -16,7 +16,8 @@
             <!-- Page heading -->
             <h1>Sign in</h1>
             <!-- Login form -->
-            <form id="loginForm">
+            <form id="loginForm" method="POST">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="form-group">
                     <!-- Username input group -->
                     <label for="username">Username</label>
@@ -31,17 +32,18 @@
                 <div class="error-message" id="error-message"></div>
                 <div class="form-group">
                     <!-- Submit button group -->
-                    <button type="submit" class="btn">Next</button>
+                    <!-- <button type="submit" class="btn">Next</button> -->
+                    <input type="submit" class="btn" value="Login">
                 </div>
                 <div class="form-footer">
                     <!-- Registration link -->
-                    <p>Don't have an account?<a href="register.html">Sign up</a></p>
+                    <p>Don't have an account?<a href="{{ url_for('auth.register') }}">Sign up</a></p>
                 </div>
             </form>
         </div>
     </div>
 
     <!-- Import JavaScript -->
-    <script src="login and register.js"></script>
+    <script src="{{ url_for( 'static', filename='login/main.js') }}"></script>
 </body>
 </html>

@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>register</title>
     <!-- Import main stylesheet -->
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="{{ url_for( 'static', filename='login/main.css') }}">
     <!-- Import register page specific stylesheet -->
-    <link rel="stylesheet" href="register.css">
+    <link rel="stylesheet" href="{{ url_for( 'static', filename='login/register.css') }}">
 </head>
 <body>
     <div class="container">
@@ -16,11 +16,17 @@
             <!-- Page heading -->
             <h1>Join us today</h1>
             <!-- Registration form -->
-            <form id="registerForm">
+            <form id="registerForm" method="POST">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="form-group">
                     <!-- Username input group -->
                     <label for="newUsername">New Username</label>
                     <input type="text" id="newUsername" name="newUsername" required>
+                </div>
+                <div class="form-group">
+                    <!-- email input group -->
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email" required>
                 </div>
                 <div class="form-group">
                     <!-- Password input group -->
@@ -36,17 +42,18 @@
                 <div class="error-message" id="register-error-message"></div>
                 <div class="form-group">
                     <!-- Submit button group -->
-                    <button type="submit" class="btn">Next</button>
+                    <!-- <button type="submit" class="btn">Next</button> -->
+                    <input type="submit" class="btn" value="Register">
                 </div>
                 <div class="form-footer">
                     <!-- Login link -->
-                    <p>Have an account already?<a href="login.html">Log in</a></p>
+                    <p>Have an account already?<a href="{{url_for('auth.login')}}">Log in</a></p>
                 </div>
             </form>
         </div>
     </div>
 
     <!-- Import JavaScript -->
-    <script src="login and register.js"></script>
+    <!-- <script src="login and register.js"></script> -->
 </body>
 </html>

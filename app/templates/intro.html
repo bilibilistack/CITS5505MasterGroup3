@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perth Regional Weather Map</title>
-    <link rel="stylesheet" href="intro-styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login/intro.css') }}">
 </head>
 
 <body>
@@ -15,7 +15,7 @@
             <div class="logo">
                 <!-- Here is the text in the upper left corner -->Group 3
             </div>
-            <a href="login.html" class="login-btn" style="font-size: 1.5em; padding: 10px 20px; display: inline-block;">login
+            <a href="{{ url_for('auth.login') }}" class="login-btn" style="font-size: 1.5em; padding: 10px 20px; display: inline-block;">login
                 <!-- TODO add login link -->
             </a>
         </header>
@@ -36,7 +36,7 @@
                 No more jumping between weather apps—just one simple map to guide your spontaneous weekend adventures.
                 Check the skies, pick a spot, and hit the road.
             </p>
-            <a href="register.html" class="cta-btn">Join us today
+            <a href="{{ url_for('auth.register') }}" class="cta-btn">Join us today
             </a>
         </section>
 
@@ -59,9 +59,7 @@
                     <p class="module-description">
                         <!-- Add module description here -->– Jess T.
                     </p>
-                    <a href="assistant.html" class="explore-link">
-                        <!-- Add explore link here -->
-                    </a>
+
                 </div>
             </div>
 
@@ -77,9 +75,7 @@
                     <p class="module-description">
                         <!-- Add module description here -->– Leo H.
                     </p>
-                    <a href="knowledge.html" class="explore-link">
-                        <!-- Add explore link here -->
-                    </a>
+
                 </div>
                 <div class="module-preview">
                     <div class="document-preview">
@@ -105,9 +101,6 @@
                     <p class="module-description">
                         <!-- Add module description here -->– Emily Z.
                     </p>
-                    <a href="vault.html" class="explore-link">
-                        <!-- Add explore link here -->
-                    </a>
                 </div>
             </div>
 
@@ -123,7 +116,7 @@
                     <p class="module-description">
                         <!-- Add module description here -->– Anita S.
                     </p>
-                    <a href="feature.html" class="explore-link">
+                    <!-- <a href="{{ url_for('static', filename='html/feature.html') }}" class="explore-link"> -->
                         <!-- Add explore link here -->
                     </a>
                 </div>
@@ -136,6 +129,7 @@
         </div>
     </div>
 
+    <script src="{{ url_for('static', filename='login/intro.js') }}"></script>
 </body>
 
 </html>

@@ -1,3 +1,5 @@
 /models/__pycache__
 /__pycache__
 /backend/__pycache__
+/application-env
+*.pyc

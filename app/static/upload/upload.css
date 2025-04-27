@@ -1,0 +1,152 @@
+/* Main content area styles */
+.main-content {
+    flex-grow: 1;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+/* Upload container styles */
+.upload-container {
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+/* Upload area styles */
+.upload-area {
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    padding: 3rem 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.upload-area.highlight {
+    background-color: #f0f7ff;
+    border-color: #3b82f6;
+}
+
+.upload-icon-wrapper {
+    margin-bottom: 1.5rem;
+}
+
+.upload-large-icon {
+    color: #888;
+    margin: 0 auto;
+}
+
+.upload-text {
+    font-size: 1.25rem;
+    color: #555;
+    margin-bottom: 0.75rem;
+}
+
+.upload-hint {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 1.5rem;
+}
+
+.upload-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #3b82f6;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.upload-button:hover {
+    background-color: #2563eb;
+}
+
+/* Upload progress bar container style */
+.upload-progress-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Progress bar container style */
+.progress-bar-container {
+    width: 100%;
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+/* Progress bar style */
+.progress-bar {
+    height: 100%;
+    background-color: #6e91c1;
+    width: 0;
+    transition: width 0.3s ease;
+}
+
+/* Progress text style */
+.progress-text {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+/* File preview container style */
+.file-preview-container {
+    margin-top: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+/* Preview Title Style */
+.preview-title {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Preview content area style */
+.preview-content {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background-color: white;
+}
+
+/* Preview table style */
+.preview-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.preview-table th,
+.preview-table td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+.preview-table th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+}
+
+.preview-table tr:hover {
+    background-color: #f9f9f9;
+}
