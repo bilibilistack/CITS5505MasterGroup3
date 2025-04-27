@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload page</title>
     <!-- Link to CSS stylesheet -->
-    <link rel="stylesheet" href="upload-styles.css">
+    <link rel="stylesheet" href="{{ url_for( 'static', filename='upload/upload.css') }}">
     <!-- Add Icon Library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -21,17 +21,21 @@
             </div>
             <div class="sidebar-content">
                 <nav class="sidebar-nav">
-                    <a href="#" class="nav-item" id="nav-visualization">
+                    <a href="{{url_for('homechart')}}" class="nav-item" id="nav-visualization">
                         <i class="nav-icon home-icon"></i>
                         <span class="nav-text">Home</span>
                     </a>
-                    <a href="upload.html" class="nav-item active" id="nav-upload">
+                    <a href="{{url_for('upload')}}" class="nav-item active" id="nav-upload">
                         <i class="nav-icon upload-icon"></i>
                         <span class="nav-text">Upload</span>
                     </a>
                     <a href="#" class="nav-item" id="nav-share">
                         <i class="nav-icon share-icon"></i>
                         <span class="nav-text">Share</span>
+                    </a>
+                    <a href="{{ url_for('auth.logout')}}" class="nav-item" id="nav-signout">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span class="nav-text">&nbsp;&nbsp;Sign Out</span>
                     </a>
                 </nav>
             </div>
@@ -102,6 +106,6 @@
 
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="upload-script.js"></script>
+    <script src="{{url_for('static',filename='upload/upload.js')}}"></script>
 </body>
 </html>

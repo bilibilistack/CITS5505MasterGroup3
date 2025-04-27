@@ -1,5 +1,6 @@
 from flask import render_template
 from app import application
+from app.auth_routes import login_required
 
 
 @application.route('/')
@@ -7,13 +8,15 @@ from app import application
 def intro():
     return render_template('intro.html')
 
+@application.route('/homechart', methods=['GET', 'POST'])
+@login_required
+def homechart():
+    return render_template('homechart.html')
 
-# @application.route('/login', methods=['GET', 'POST'])
-# def login():
-#     return render_template('login.html')
+@application.route('/upload', methods=['GET', 'POST'])
+@login_required
+def upload():
+    return render_template('upload.html')
 
 
-# @application.route('/register', methods=['GET', 'POST'])
-# def register():
-#     return render_template('register.html')
 

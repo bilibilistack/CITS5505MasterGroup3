@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const perthLng = 115.8605;
     let selectedCity = 'Perth';  // Default city
 
-    // Helper Functions
+    // Mapping weacher code to  weather svg icon
     function getWeatherIconName(code, isDay) {
         const base = isDay ? '-day' : '-night';
         const map = {
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             96: `hail`,
             99: `severe-thunderstorm`
         };
-        return map[code] || 'wind';
+        return map[code] || 'wind'; // Default icon for unknown codes
     }
 
     // Map Initialization
@@ -55,11 +55,11 @@ document.addEventListener('DOMContentLoaded', async function () {
     }).addTo(map);
 
     const markersLayer = L.layerGroup().addTo(map);
+    const resourcesBaseUrl = "/static/chart/resources"; // Base URL for resources
 
     // Data Loading
-    const cities = await fetch('resources/city_lat_lon.json').then(r => r.json());
-    const weatherData = await fetch('resources/wa_weather_data.json').then(r => r.json());
-    
+    const cities = await fetch(`${resourcesBaseUrl}/city_lat_lon.json`).then(r => r.json());
+    const weatherData = await fetch(`${resourcesBaseUrl}/wa_weather_data.json`).then(r => r.json());
     // Date Setup
     const dates = weatherData.map(w => w.date);
     const minDate = dates.reduce((a, b) => a < b ? a : b);
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Marker Functions
     function addWeatherIcon(lat, lng, iconName, weatherData) {
         const icon = L.icon({
-            iconUrl: `resources/animated_weather/${iconName}.svg`,
+            iconUrl: `${resourcesBaseUrl}/animated_weather/${iconName}.svg`,
             iconSize: [75, 75],
             iconAnchor: [50, 50]
         });
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             <h4>${weatherData.city}</h4>
             <p>Date: ${weatherData.date}</p>
             <p>Temperature: ${weatherData.temperature_low}°C  ~  ${weatherData.temperature_high}°C</p>
-            <p>Weather: <img class="weather-icon" src="resources/animated_weather/${iconName}.svg" />  ${weatherData.weather_description}</p>
+            <p>Weather: <img class="weather-icon" src="${resourcesBaseUrl}/animated_weather/${iconName}.svg" />  ${weatherData.weather_description}</p>
             <p>Wind: ${weatherData.wind_speed} km/h </p> 
             </div>
         `;
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             if (weather) {
                 const iconName = getWeatherIconName(weather.weather, weather.is_day);
                 const forecastDay = forecastDays[index];
-                forecastDay.querySelector('.forecast-icon').src = `resources/animated_weather/${iconName}.svg`;
+                forecastDay.querySelector('.forecast-icon').src = `${resourcesBaseUrl}/animated_weather/${iconName}.svg`;
                 forecastDay.querySelector('.forecast-temp').textContent = 
                     `${weather.temp_min}°C ~ ${weather.temp_max}°C`;
             }
