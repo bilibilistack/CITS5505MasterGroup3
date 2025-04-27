@@ -65,11 +65,11 @@ http://127.0.0.1:5000
 
 
 Press CTRL+C to quit
-```
+
 ![Homepage](introduction_images/Homepage.png)
 ![Introduction Page](introduction_images/Introduction%20page.png)
 ![Register](introduction_images/Register.png)
-```
+
 
 
 
