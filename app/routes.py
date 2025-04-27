@@ -18,5 +18,11 @@ def homechart():
 def upload():
     return render_template('upload.html')
 
+@application.route('/share', methods=['GET', 'POST'])
+@login_required
+def share():
+    return render_template('share.html')
+
+
 
 
