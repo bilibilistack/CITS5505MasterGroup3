@@ -71,6 +71,25 @@
                             <input type="file" id="file-input" accept=".csv" hidden>
                         </label>
                     </div>
+
+                    <!-- Upload progress bar container -->
+                    <div class="upload-progress-container" id="upload-progress-container" style="display: none;">
+                        <!-- Upload progress bar -->
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="upload-progress-bar"></div>
+                        </div>
+                        <div class="progress-text" id="upload-progress-text">0%</div>
+                    </div>
+
+                    <!-- File preview area -->
+                    <div class="file-preview-container" id="file-preview-container" style="display: none;">
+                        <h3 class="preview-title">File Preview</h3>
+                        <div class="preview-content">
+                            <table class="preview-table" id="preview-table">
+                                <!-- Dynamically generated via JavaScript -->
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </main>
             
