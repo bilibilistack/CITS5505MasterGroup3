@@ -17,16 +17,20 @@ def register():
         username = request.form['newUsername']
         password = request.form['newPassword']
         password2 = request.form['confirmPassword']
+        email = request.form['email']
         if User.query.filter_by(username=username).first():
             return "User already exists!"
         if (password!=password2):
             return "Passwords do not match! Please try again."
         if len(password) < 6:
             return "Password must be at least 6 characters long!"
-        new_user = User(username=username, password=password)
+        if '@' not in email or '.' not in email.split('@')[-1]:
+            return "Invalid email address! Please try again."
+        new_user = User(username=username, email=email)
+        new_user.set_password(password)
         db.session.add(new_user)
         db.session.commit()
-        print(f"Username: {username}, Password: {password} Added to database")
+        print(f"New User: {username} Added to database")
         return redirect(url_for('auth.login'))
     return render_template('register.html')
 
@@ -35,8 +39,8 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        user = User.query.filter_by(username=username, password=password).first()
-        if user:
+        user = User.query.filter_by(username=username).first()
+        if user and user.check_password(password):
             session['user_id'] = user.id
             session['username'] = user.username
             print(f"User {username} logged in!")
