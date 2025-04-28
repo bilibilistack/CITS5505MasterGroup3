@@ -3,7 +3,7 @@
 {% block title %}Share your idea to friends!{% endblock %}
 
 {% block extra_css %}
-<!-- <link rel="stylesheet" href="{{ url_for('static', filename='upload/upload.css') }}"> -->
+<link rel="stylesheet" href="{{ url_for('static', filename='share/share.css') }}">
 {% endblock %}
 
 {% block header_title %}Weather data visualization platform{% endblock %}
@@ -11,62 +11,6 @@
 {% block header_subtitle %}Please enter user you want to share{% endblock %}
 
 {% block main_content %}
-<h1>Under developing</h1><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Share page</title>
-    <!-- Link to CSS stylesheet -->
-    <link rel="stylesheet" href="share.css">
-    <!-- Add Icon Library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
-    <div class="weather-app">
-        <!-- Add a sidebar -->
-        <div class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <h2>Weather App</h2>
-                <button id="toggle-sidebar" class="toggle-btn">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-            </div>
-            <div class="sidebar-content">
-                <nav class="sidebar-nav">
-                    <a href="#" class="nav-item" id="nav-visualization">
-                        <i class="nav-icon home-icon"></i>
-                        <span class="nav-text">Home</span>
-                    </a>
-                    <a href="upload.html" class="nav-item" id="nav-upload">
-                        <i class="nav-icon upload-icon"></i>
-                        <span class="nav-text">Upload</span>
-                    </a>
-                    <a href="share.html" class="nav-item active" id="nav-share">
-                        <i class="nav-icon share-icon"></i>
-                        <span class="nav-text">Share</span>
-                    </a>
-                </nav>
-            </div>
-        </div>
-        
-        <!-- Sidebar Buttons -->
-        <button id="show-sidebar" class="show-sidebar-btn">
-            <i class="fas fa-bars"></i>
-        </button>
-        
-        <!-- Content packaging container -->
-        <div class="content-wrapper">
-            <!-- Header section -->
-            <header class="header">
-                <!-- Main title -->
-                <h1 class="main-title">Weather data sharing platform</h1>
-                <!-- Subtitle -->
-                <p class="subtitle">Share your visualizations with others</p>
-            </header>
-            
-            <!-- Main content area -->
-            <main class="main-content">
                 <!-- Share section -->
                 <div class="share-container">
                     <h2 class="section-title">Share Weather Visualization</h2>
@@ -116,23 +60,90 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Shared with me section -->
+                    <div class="shared-with-me">
+                        <h3 class="subsection-title">Shared With Me</h3>
+                        
+                        <!-- Filter and sort options -->
+                        <div class="filter-options">
+                            <div class="filter-group">
+                                <label for="filter-date">Filter by:</label>
+                                <select id="filter-date">
+                                    <option value="all">All time</option>
+                                    <option value="today">Today</option>
+                                    <option value="week">This week</option>
+                                    <option value="month">This month</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label for="sort-by">Sort by:</label>
+                                <select id="sort-by">
+                                    <option value="newest">Newest first</option>
+                                    <option value="oldest">Oldest first</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Shared items message center -->
+                        <div class="message-center" id="message-center">
+                            <!-- Example shared item (just an example) -->
+                            <div class="shared-item">
+                                <div class="shared-item-header">
+                                    <div class="shared-by">
+                                        <i class="fas fa-user-circle"></i>
+                                        <span class="user-name">Marcus Zhou</span>
+                                    </div>
+                                    <div class="shared-time">12 hours ago</div>
+                                </div>
+                                <div class="shared-item-content">
+                                    <div class="shared-thumbnail">
+                                        <img src="/api/placeholder/200/150" alt="Weather visualization">
+                                    </div>
+                                    <div class="shared-details">
+                                        <p class="shared-message">My CITS5505 got HD!</p>
+                                        <div class="shared-actions">
+                                            <button class="view-btn">
+                                                <i class="fas fa-eye"></i> View
+                                            </button>
+                                            <button class="download-btn">
+                                                <i class="fas fa-download"></i> Download
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Second example shared item -->
+                            <div class="shared-item">
+                                <div class="shared-item-header">
+                                    <div class="shared-by">
+                                        <i class="fas fa-user-circle"></i>
+                                        <span class="user-name">Canaan</span>
+                                    </div>
+                                    <div class="shared-time">Yesterday</div>
+                                </div>
+                                <div class="shared-item-content">
+                                    <div class="shared-thumbnail">
+                                        <img src="/api/placeholder/200/150" alt="Weather visualization">
+                                    </div>
+                                    <div class="shared-details">
+                                        <p class="shared-message">My CITS5505 got HD, too!</p>
+                                        <div class="shared-actions">
+                                            <button class="view-btn">
+                                                <i class="fas fa-eye"></i> View
+                                            </button>
+                                            <button class="download-btn">
+                                                <i class="fas fa-download"></i> Download
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </main>
-            
-            <!-- Footer section -->
-            <footer class="footer">
-                <p>&copy; CITS5505 Group 3</p>
-            </footer>
-        </div>
-    </div>
-
-    <!-- jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="share.js"></script>
-</body>
-</html>
 {% endblock %}
 
 {% block extra_end_js %}
-<!-- <script src="{{url_for('static',filename='upload/upload.js')}}"></script> -->
+<script src="{{url_for('static',filename='share/share.js')}}"></script>
 {% endblock %}
