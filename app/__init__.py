@@ -11,7 +11,8 @@ csrf = CSRFProtect(application)
 
 import app.routes              
 from app.models import db
-from app.auth_routes import auth_bp    
+from app.auth_routes import auth_bp
+from app.upload_routes import upload_bp    
 import os                                  
 
 # sqllite database path folder
@@ -25,6 +26,7 @@ migrate = Migrate(application, db)
 
 # Register route blueprints 
 application.register_blueprint(auth_bp)
+application.register_blueprint(upload_bp)
 
 # Create tables in the database (only if they don't already exist)
 with application.app_context():
