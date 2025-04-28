@@ -1,6 +1,7 @@
 from flask import render_template
 from app import application
 from app.auth_routes import login_required
+from flask_wtf.csrf import generate_csrf
 
 
 @application.route('/')
@@ -16,7 +17,7 @@ def homechart():
 @application.route('/upload', methods=['GET', 'POST'])
 @login_required
 def upload():
-    return render_template('upload.html')
+    return render_template('upload.html', csrf_token=generate_csrf())
 
 @application.route('/share', methods=['GET', 'POST'])
 @login_required
