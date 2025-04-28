@@ -166,6 +166,7 @@ $(document).ready(function() {
                 console.error('Error:', error);
             }
         });
+        sidebar.removeClass('collapsed');// Show sidebar after file upload automatically to let jump to other pages
     }
     
     // Preview CSV file
