@@ -13,7 +13,7 @@ class User(db.Model):
 
     # Set the password as a hashed value
     def set_password(self, password):
-        self.password_hash = generate_password_hash(password)
+        self.password_hash = generate_password_hash(password, method='pbkdf2:sha256')
 
     # Verify the password against the stored hash
     def check_password(self, password):
