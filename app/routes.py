@@ -22,7 +22,7 @@ def upload():
 @application.route('/share', methods=['GET', 'POST'])
 @login_required
 def share():
-    return render_template('share.html')
+    return render_template('share.html', csrf_token=generate_csrf())
 
 
 

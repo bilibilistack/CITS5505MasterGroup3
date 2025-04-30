@@ -54,7 +54,8 @@
                             
                             <!-- Share button -->
                             <div class="share-actions">
-                                <button class="share-btn" id="share-btn" disabled>
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                                <button class="share-btn" id="share-btn">
                                     <i class="fas fa-share-alt"></i> Share
                                 </button>
                             </div>
