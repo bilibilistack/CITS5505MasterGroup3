@@ -80,7 +80,10 @@ $(document).ready(function () {
         });
     });
 
-
+    // Trigger search on Enter key in the input field
+    $('#search-user').keydown(function(e) {
+            $('#search-btn').click();
+    });
 
     // Share button click handler
     shareBtn.click(function () {
@@ -89,7 +92,7 @@ $(document).ready(function () {
         $('.user-select:checked').each(function () {
             selectedUsers.push($(this).data('id'));
         });
-        
+
         // Get the content to share
         const contentToShare = shareMessage.val();
 
@@ -111,11 +114,11 @@ $(document).ready(function () {
         $.ajax({
             url: '/share_data',
             type: 'POST',
-            contentType: 'application/json',  
+            contentType: 'application/json',
             headers: {
-                'X-CSRFToken': csrfToken 
+                'X-CSRFToken': csrfToken
             },
-            data: JSON.stringify(dataToSend), 
+            data: JSON.stringify(dataToSend),
             success: function (response) {
                 if (response.success) {
                     alert('Data shared successfully!');
