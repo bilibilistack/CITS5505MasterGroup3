@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, session
+from flask import Blueprint, request, jsonify, session, render_template, redirect, url_for
 from app.models import User 
 from app.models import Share
 from app.models import db
@@ -9,6 +9,9 @@ share_bp = Blueprint('share', __name__)
 # User fuzzy search route
 @share_bp.route('/search_users', methods=['GET'])
 def search_users():
+    """
+    find users list
+    """
     # Retrieve the search term and current user from the GET request
     search_term = request.args.get('searchTerm')  
     currentUserName = session.get('username')
@@ -26,6 +29,9 @@ def search_users():
 
 @share_bp.route('/share_data', methods=['POST'])
 def share_data():
+    """
+    share date to other users.
+    """
     # get data and user id from front
     selected_users = request.json.get('selectedUsers')
     content = request.json.get('content')
@@ -47,3 +53,17 @@ def share_data():
 
     db.session.commit()
     return jsonify({"success": True, "message": "Data shared successfully."}), 200
+
+def get_shares_for_user():
+    """
+    get share record   
+    """
+    
+    user_id = session.get('user_id')
+
+    if not user_id:
+        return redirect(url_for('login'))
+
+    shares = Share.query.filter_by(shared_to=user_id).all()
+
+    return shares

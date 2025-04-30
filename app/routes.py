@@ -1,6 +1,7 @@
 from flask import render_template
 from app import application
 from app.auth_routes import login_required
+from app.share import get_shares_for_user
 from flask_wtf.csrf import generate_csrf
 
 
@@ -22,7 +23,8 @@ def upload():
 @application.route('/share', methods=['GET', 'POST'])
 @login_required
 def share():
-    return render_template('share.html', csrf_token=generate_csrf())
+    shares = get_shares_for_user() 
+    return render_template('share.html', shares = shares, csrf_token=generate_csrf())
 
 
 

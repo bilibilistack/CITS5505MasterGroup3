@@ -87,20 +87,21 @@
                         
                         <!-- Shared items message center -->
                         <div class="message-center" id="message-center">
+                            {% for share in shares %}
                             <div class="shared-item">
                                 <div class="shared-item-header">
                                     <div class="shared-by">
                                         <i class="fas fa-user-circle"></i>
-                                        <span class="user-name">Marcus Zhou</span>
+                                        <span class="user-name">{{ share.shared_by }}</span>
                                     </div>
-                                    <div class="shared-time">12 hours ago</div>
+                                    <div class="shared-time">{{ share.share_time }}</div>
                                 </div>
                                 <div class="shared-item-content">
                                     <div class="shared-thumbnail">
                                         <img src="/api/placeholder/200/150" alt="Weather visualization">
                                     </div>
                                     <div class="shared-details">
-                                        <p class="shared-message">My CITS5505 got HD!</p>
+                                        <p class="shared-message">{{ share.content }}</p>
                                         <div class="shared-actions">
                                             <button class="view-btn">
                                                 <i class="fas fa-eye"></i> View
@@ -112,7 +113,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
