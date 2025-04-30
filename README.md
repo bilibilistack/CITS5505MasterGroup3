@@ -21,18 +21,31 @@ CITS5505Group3/
 │   │   ├── base.html               # Base template with shared layout (header, sidebar, footer)
 │   │   ├── homechart.html          # Template for the weather visualization page
 │   │   ├── upload.html             # Template for the file upload page
-│   │   ├── intro.html              # Template for the introduction page
+│   │   ├── intro.html              # Template for the introduction page before login
 │   │   ├── share.html              # Template for the sharing page
+│   │   ├── login.html              # Template for the login page
+│   │   ├── register.html           # Template for the register page
+│   │   ├── redirect.html           # Template for the redirect page
 │   ├── static/                     # Static files (CSS, JavaScript, images)
 │   │   ├── chart/                  # Static files for the weather visualization page
+│   │   │   ├── resources/          # icon library
 │   │   │   ├── homechart.css       # Styles for the weather visualization page
 │   │   │   ├── homechart.js        # JavaScript for the weather visualization page
 │   │   │   ├── leaflet.css         # Leaflet library styles for maps
 │   │   │   ├── leaflet.js          # Leaflet library JavaScript for maps
+│   │   │   ├── base.css            # Shared styles for the entire application
+│   │   ├── login/                  # Static files for the login page
+│   │   │   ├── login.css           # Styles for the login page
+│   │   │   ├── home.js             # JavaScript for login and registration
+│   │   │   ├── intro.css           # Styles for the intro page
+│   │   │   ├── register.css        # Styles for the registration page
+│   │   │   ├── main.css            # Styles for the login and registration page
+│   │   ├── share/                  # Static files for the share page
+│   │   │   ├── share.css           # Styles for the share page
+│   │   │   ├── share.js            # JavaScript for handling share
 │   │   ├── upload/                 # Static files for the file upload page
 │   │   │   ├── upload.css          # Styles for the file upload page
 │   │   │   ├── upload.js           # JavaScript for handling file uploads
-│   │   ├── base.css                # Shared styles for the entire application
 │   ├── config.py                   # Configuration file for the Flask app (e.g., database settings)
 │   ├── instance/                   # Folder for SQLite database and instance-specific files
 │       ├── application.db          # SQLite database file
@@ -40,6 +53,7 @@ CITS5505Group3/
 │   ├── app.py                      # Entry point for running the demo application
 │   ├── README.md                   # Instructions for running the demo
 ├── README.md                       # Project overview and instructions for running the application
+├── start_server.py                 # Start server using python start_server.py
 ├── .gitignore                      # Specifies files and folders to ignore in version control
 ```
 
