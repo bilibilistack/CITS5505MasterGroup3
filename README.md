@@ -56,7 +56,7 @@ pip install alembic==1.15.2 blinker==1.9.0 click==8.1.8 colorama==0.4.6 Flask==3
 In your project root directory, run:
 
 ```
-python app.py
+python start_server.py
 ```
 
 Once the server is running, open your browser and visit:
