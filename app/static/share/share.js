@@ -53,13 +53,12 @@ $(document).ready(function () {
     //search user
     searchBtn.click(function () {
         const searchTerm = searchInput.val();
-        const currentUser = 'cj1';
         if (searchTerm.trim() === '') {
             userResults.empty();
             return;
         }
         // request data from database
-        $.get('/search_users', { searchTerm: searchTerm, currentUser: currentUser }, function (data) {
+        $.get('/search_users', { searchTerm: searchTerm }, function (data) {
             userResults.empty();
             if (data.length > 0) {
                 userResults.show();
@@ -100,14 +99,12 @@ $(document).ready(function () {
             return;
         }
 
-        const currentUser = 'cj1';  // Replace with the actual current user ID
         var csrfToken = $('input[name="csrf_token"]').val();
 
         // Prepare the data to be sent in the request body
         const dataToSend = {
             selectedUsers: selectedUsers,
             content: contentToShare,
-            currentUser: currentUser
         };
 
         // Send the POST request with JSON data
