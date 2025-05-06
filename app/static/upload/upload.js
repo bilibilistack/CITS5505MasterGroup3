@@ -41,6 +41,8 @@ $(document).ready(function() {
     // Check screen size
     checkScreenSize();
     $(window).resize(checkScreenSize);
+
+    // File drop area and file input elements
     
     // Prevent browser default behavior for drag and drop events
     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
@@ -84,53 +86,87 @@ $(document).ready(function() {
     // New preview features
     function handleFiles(files) {
         if (files.length === 0) return;
-        
+
         const file = files[0];
         if (file.type !== 'text/csv' && !file.name.endsWith('.csv')) {
-            alert('CSV files only!');
+            alert('Please upload CSV files only!');
             return;
         }
-        
+
         // Display upload progress bar
         $('#upload-progress-container').show();
-        simulateFileUpload(file);
-        
+
         // Preview CSV file
         previewCSVFile(file);
+
+        // Post CSV file to server
+        postCSVFile(file);
     }
-    
-    // Simulate file upload progress
-    function simulateFileUpload(file) {
+
+    // Post CSV file to server
+    function postCSVFile(file) {
+        const formData = new FormData();
+        formData.append('file', file);
+
         // Reset progress bar
         const progressBar = $('#upload-progress-bar');
         const progressText = $('#upload-progress-text');
         progressBar.css('width', '0%');
         progressText.text('0%');
-        
-        // Initial progress value
+
+        // Gradually bump progress to 99% over 8 seconds
         let progress = 0;
-        
-        // Simulate the upload process
-        const uploadInterval = setInterval(function() {
-            // Increase progress
-            progress += Math.random() * 10;
-            
-            if (progress >= 100) {
-                // Upload completed
-                progress = 100;
-                clearInterval(uploadInterval);
-                
-                // Display upload success message
-                setTimeout(function() {
-                    alert('upload successfully: ' + file.name);
-                }, 500);
+        const interval = setInterval(() => {
+            if (progress < 99) {
+                progress += 1;
+                progressBar.css('width', `${progress}%`);
+                progressText.text(`${progress}%`);
+            } else {
+                clearInterval(interval);
             }
-            
-            // Update progress bar and text
-            const progressValue = Math.min(Math.round(progress), 100);
-            progressBar.css('width', progressValue + '%');
-            progressText.text(progressValue + '%');
-        }, 100);
+        }, 80); // 8000ms / 99 steps = ~80ms per step
+
+        const csrfToken = $('meta[name="csrf-token"]').attr('content'); // Get CSRF token from meta tag
+
+        $.ajax({
+            url: '/upload_csv',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            headers: {
+                'X-CSRFToken': csrfToken // Add CSRF token to request headers
+            },
+            success: function(response) {
+                clearInterval(interval); // Stop gradual progress
+                if (response.message && response.message.includes('uploaded and processed successfully')) {
+                    // Set progress to 100% on successful response
+                    progressBar.css('width', '100%');
+                    progressText.text('100%');
+                    alert('File uploaded successfully!');
+                    console.log('Server response:', response);
+                } else {
+                    // Handle unexpected success responses
+                    alert('Unexpected server response!');
+                    console.log('Server response:', response);
+                }
+            },
+            error: function(xhr, status, error) {
+                clearInterval(interval); // Stop gradual progress
+                const response = JSON.parse(xhr.responseText);
+                if (xhr.status === 400) {
+                    // Reset progress to 0% on error
+                    progressBar.css('width', '0%');
+                    progressText.text('0%');
+                    const errorMessage = response.error || 'File upload failed! Please check the csv file contains all required columns and try again.';
+                    alert(errorMessage);
+                } else {
+                    alert(response.error || 'An error occurred on server side');
+                }
+                console.error('Error:', error);
+            }
+        });
+        sidebar.removeClass('collapsed');// Show sidebar after file upload automatically to let jump to other pages
     }
     
     // Preview CSV file
