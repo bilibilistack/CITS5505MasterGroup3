@@ -58,12 +58,12 @@ document.addEventListener('DOMContentLoaded', async function () {
     const resourcesBaseUrl = "/static/chart/resources"; // Base URL for resources
 
     // // Data Loading (legacy code, faster to use local data))
-    const cities = await fetch(`${resourcesBaseUrl}/city_lat_lon.json`).then(r => r.json());
+    // const cities = await fetch(`${resourcesBaseUrl}/city_lat_lon.json`).then(r => r.json());
     // const weatherData = await fetch(`${resourcesBaseUrl}/wa_weather_data.json`).then(r => r.json());
     
     // Data Loading (api from db)
     const weatherData = await fetch('/api/weather_data').then(r => r.json());
-    // const cities = await fetch('/api/city_lat_lon').then(r => r.json());
+    const cities = await fetch('/api/city_lat_lon').then(r => r.json());
 
     // Date Setup
     const dates = weatherData.map(w => w.date);

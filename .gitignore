@@ -3,3 +3,4 @@
 /backend/__pycache__
 /application-env
 *.pyc
+*.db

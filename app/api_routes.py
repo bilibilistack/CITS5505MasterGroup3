@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from .models import WeatherData
+from .models import WeatherData, City
 
 api_bp = Blueprint('api', __name__)
 
@@ -21,5 +21,18 @@ def get_weather_data():
             "precip_mm": w.precip_mm
         }
         for w in data
+    ]
+    return jsonify(result)
+
+@api_bp.route('/api/city_lat_lon')
+def get_city_data():
+    data = City.query.all()
+    result = [
+        {
+            "city": c.city_name,
+            "lat": c.lat,
+            "lon": c.lon
+        }
+        for c in data
     ]
     return jsonify(result)
