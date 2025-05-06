@@ -6,10 +6,10 @@ document.addEventListener('DOMContentLoaded', function() {
     if (modules.length > 0) {
         modules[0].classList.add('visible');
 
-        // Add click event to the first module
-        modules[0].addEventListener('click', function() {
-            // Remove this event listener after click to avoid repeating
-            modules[0].removeEventListener('click', arguments.callee);
+        // Change to mouseenter event instead of click
+        modules[0].addEventListener('mouseenter', function() {
+            // Remove this event listener after trigger to avoid repeating
+            modules[0].removeEventListener('mouseenter', arguments.callee);
             
             // Show all other modules sequentially
             revealAllModules();
@@ -45,23 +45,5 @@ document.addEventListener('DOMContentLoaded', function() {
             top: scrollTarget,
             behavior: 'smooth'
         });
-    }
-    
-    // Picture button functionality
-    const pictureBtn = document.querySelector('.picture-btn');
-    if (pictureBtn) {
-        // Add click event (optional)
-        pictureBtn.addEventListener('click', function(e) {
-            e.preventDefault(); // Prevent default anchor behavior
-            
-            // Placeholder for modal/fullscreen image functionality
-        });
-        
-        // Preload image for better user experience
-        const thumbnailImg = pictureBtn.querySelector('img');
-        if (thumbnailImg && thumbnailImg.src) {
-            const preloadImg = new Image();
-            preloadImg.src = thumbnailImg.src;
-        }
     }
 });
