@@ -6,7 +6,7 @@ This website aims to help people make travel plans by providing visualization of
 - 24576325 Canaan Guo github:bilibilistack
 - 24176913 Changjiang Zhang  github:chanale
 - 24257061 Marcus Zhou github:MarcusZhou-2024
-- 24563207 Wendy Song
+- 24563207 Wendy Song github:WendySong1
 
 ## Project Structure
 
@@ -21,39 +21,62 @@ CITS5505Group3/
 │   │   ├── base.html               # Base template with shared layout (header, sidebar, footer)
 │   │   ├── homechart.html          # Template for the weather visualization page
 │   │   ├── upload.html             # Template for the file upload page
-│   │   ├── intro.html              # Template for the introduction page
+│   │   ├── intro.html              # Template for the introduction page before login
 │   │   ├── share.html              # Template for the sharing page
+│   │   ├── login.html              # Template for the login page
+│   │   ├── register.html           # Template for the register page
+│   │   ├── redirect.html           # Template for the redirect page
 │   ├── static/                     # Static files (CSS, JavaScript, images)
 │   │   ├── chart/                  # Static files for the weather visualization page
+│   │   │   ├── resources/          # icon library
 │   │   │   ├── homechart.css       # Styles for the weather visualization page
 │   │   │   ├── homechart.js        # JavaScript for the weather visualization page
 │   │   │   ├── leaflet.css         # Leaflet library styles for maps
 │   │   │   ├── leaflet.js          # Leaflet library JavaScript for maps
+│   │   │   ├── base.css            # Shared styles for the entire application
+│   │   ├── login/                  # Static files for the login page
+│   │   │   ├── login.css           # Styles for the login page
+│   │   │   ├── home.js             # JavaScript for login and registration
+│   │   │   ├── intro.css           # Styles for the intro page
+│   │   │   ├── register.css        # Styles for the registration page
+│   │   │   ├── main.css            # Styles for the login and registration page
+│   │   ├── share/                  # Static files for the share page
+│   │   │   ├── share.css           # Styles for the share page
+│   │   │   ├── share.js            # JavaScript for handling share
 │   │   ├── upload/                 # Static files for the file upload page
 │   │   │   ├── upload.css          # Styles for the file upload page
 │   │   │   ├── upload.js           # JavaScript for handling file uploads
-│   │   ├── base.css                # Shared styles for the entire application
 │   ├── config.py                   # Configuration file for the Flask app (e.g., database settings)
 │   ├── instance/                   # Folder for SQLite database and instance-specific files
-│       ├── application.db          # SQLite database file
+│       ├── application.db          # SQLite database file, will be generated but excluded from git
 ├── demo/                           # Demo folder for testing or showcasing the app
 │   ├── app.py                      # Entry point for running the demo application
 │   ├── README.md                   # Instructions for running the demo
 ├── README.md                       # Project overview and instructions for running the application
+├── load_demo_data.py               # Clean database and load demo user, city and weather data
+├── start_server.py                 # Start server using python start_server.py
 ├── .gitignore                      # Specifies files and folders to ignore in version control
 ```
 
 
 ## instructions for how to launch the application
 
-If you haven’t installed the required packages(`flask` and `flask_sqlalchemy`) yet, run the following command:
+
+
+1. Install python 3.13.
+2. Create your python environment and activate (optional)：
+```
+python -m venv application-env
+cd application-env/Scripts
+activate.bat(cmd) or activate.ps1(powershell) or activate(bash)
+```
+3. Install required modules:
+```
+pip install flask flask-Migrate Flask-SQLAlchemy WTForms
 
 ```
-pip install alembic==1.15.2 blinker==1.9.0 click==8.1.8 colorama==0.4.6 Flask==3.1.0 Flask-Migrate==4.1.0 Flask-SQLAlchemy==3.1.1 Flask-WTF==1.2.2 greenlet==3.2.1 itsdangerous==2.2.0 Jinja2==3.1.6 Mako==1.3.10 MarkupSafe==3.0.2 SQLAlchemy==2.0.40 typing_extensions==4.13.2 Werkzeug==3.1.3 WTForms==3.2.1
 
-```
-
-In your project root directory, run:
+4. In your project root directory, run:
 
 ```
 python start_server.py
@@ -65,11 +88,9 @@ http://127.0.0.1:5000
 
 
 Press CTRL+C to quit
-```
+
 ![Homepage](introduction_images/Homepage.png)
-![Introduction Page](introduction_images/Introduction%20page.png)
-![Register](introduction_images/Register.png)
-```
+
 
 
 
