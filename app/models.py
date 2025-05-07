@@ -45,6 +45,9 @@ class City(db.Model):
     city_name = db.Column(db.String(100), unique=True, nullable=False)
     lat = db.Column(db.Float, nullable=False)
     lon = db.Column(db.Float, nullable=False)
+    main_spots = db.Column(db.String(500), nullable=True)  # List of main spots in the city
+    tips = db.Column(db.String(1000), nullable=True)  # Tips for the city
 
     def __repr__(self):
         return f'<City {self.city_name}>'
+

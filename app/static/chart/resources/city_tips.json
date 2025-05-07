@@ -1,0 +1,103 @@
+[
+    {
+      "city": "Perth",
+      "main_spots": ["Kings Park & Botanic Garden", "Cottesloe Beach", "Perth Zoo", "Fremantle Markets", "Swan River", "Perth Cultural Centre"],
+      "tips": ["Use public transport with a SmartRider card", "Day trips to Rottnest Island and Swan Valley are highly recommended"]
+    },
+    {
+      "city": "Geraldton",
+      "main_spots": ["HMAS Sydney II Memorial", "Geraldton Foreshore", "Museum of Geraldton", "Abrolhos Islands"],
+      "tips": ["Visit in spring for wildflowers", "Consider a scenic flight over the Abrolhos Islands"]
+    },
+    {
+      "city": "Carnarvon",
+      "main_spots": ["One Mile Jetty", "Carnarvon Space and Technology Museum", "Blowholes", "Gascoyne River"],
+      "tips": ["Try local tropical fruits", "Use as a base to explore Ningaloo Reef and Shark Bay"]
+    },
+    {
+      "city": "Margaret River",
+      "main_spots": ["Margaret River wineries", "Mammoth Cave", "Surfers Point", "Boranup Forest", "Cape Leeuwin Lighthouse"],
+      "tips": ["Book wine tours in advance", "Autumn is quieter for visiting cellar doors"]
+    },
+    {
+      "city": "Busselton",
+      "main_spots": ["Busselton Jetty", "Geographe Bay"],
+      "tips": ["Ideal for families", "Book Jetty attractions online to avoid queues"]
+    },
+    {
+      "city": "Bunbury",
+      "main_spots": ["Dolphin Discovery Centre", "Bunbury Wildlife Park", "Koombana Bay", "Marlston Hill Lookout"],
+      "tips": ["Visit early for dolphin sightings", "Explore the art and cafe scene"]
+    },
+    {
+      "city": "Albany",
+      "main_spots": ["The Gap and Natural Bridge", "National Anzac Centre", "Middleton Beach", "Torndirrup National Park"],
+      "tips": ["Pack warm clothing", "Good base for whale watching from June to October"]
+    },
+    {
+      "city": "Denmark",
+      "main_spots": ["Greens Pool", "Elephant Rocks", "Valley of the Giants Tree Top Walk", "Denmark River"],
+      "tips": ["Book early in summer", "Bring a camera for the stunning coast"]
+    },
+    {
+      "city": "Esperance",
+      "main_spots": ["Cape Le Grand National Park", "Lucky Bay", "Great Ocean Drive"],
+      "tips": ["Be prepared for long drives", "Beaches are among the whitest in Australia"]
+    },
+    {
+      "city": "Manjimup",
+      "main_spots": ["Timber Park", "Diamond Tree Lookout", "Truffle farms"],
+      "tips": ["Visit in winter/spring for truffle season", "Great for local produce"]
+    },
+    {
+      "city": "Collie",
+      "main_spots": ["Wellington National Park", "Honeymoon Pool", "Collie Art Gallery"],
+      "tips": ["Good for swimming and forest hikes", "Bring insect repellent"]
+    },
+    {
+      "city": "Narrogin",
+      "main_spots": ["Foxes Lair Nature Reserve", "Dryandra Woodland"],
+      "tips": ["Best in wildflower season", "Look out for numbats in Dryandra"]
+    },
+    {
+      "city": "Katanning",
+      "main_spots": ["Katanning Mosque", "Kobeelya", "Local art trails"],
+      "tips": ["Try local halal food", "Unique multicultural town"]
+    },
+    {
+      "city": "Kalgoorlie",
+      "main_spots": ["Super Pit Lookout", "Museum of the Goldfields", "Questa Casa", "Hannan Street"],
+      "tips": ["Follow the Golden Quest Trail", "Prepare for hot, dry weather"]
+    },
+    {
+      "city": "Augusta",
+      "main_spots": ["Cape Leeuwin Lighthouse", "Jewel Cave"],
+      "tips": ["Quieter than Margaret River", "Great coastal views"]
+    },
+    {
+      "city": "Lancelin",
+      "main_spots": ["Lancelin Sand Dunes", "Beach fishing", "Windsurfing spots"],
+      "tips": ["Rent sandboards", "Go early before it gets windy and crowded"]
+    },
+    {
+      "city": "Kellerberrin",
+      "main_spots": ["Pioneer Museum", "Mount Caroline Nature Reserve"],
+      "tips": ["Good for Wheatbelt landscapes", "Look for nearby silo art"]
+    },
+    {
+      "city": "Hyden",
+      "main_spots": ["Wave Rock", "Hippo’s Yawn", "Mulka’s Cave"],
+      "tips": ["Go early for photos", "Best in spring for wildflowers"]
+    },
+    {
+      "city": "Northcliffe",
+      "main_spots": ["Understory Art & Nature Trail", "Shannon National Park"],
+      "tips": ["Great for forest walks", "Ideal digital detox destination"]
+    },
+    {
+      "city": "Hopetoun",
+      "main_spots": ["Fitzgerald River National Park", "Barrens Beach"],
+      "tips": ["Stock up before park entry", "Remote and scenic for nature lovers"]
+    }
+  ]
+  
