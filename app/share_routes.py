@@ -3,6 +3,7 @@ from app.models import User
 from app.models import Share
 from app.models import db
 import json
+from datetime import timedelta
 
 # Create a Blueprint for the share module to organize routes
 share_bp = Blueprint('share', __name__)
@@ -65,7 +66,24 @@ def get_shares_for_user():
 
     if not user_id:
         return redirect(url_for('login'))
-
-    shares = Share.query.filter_by(shared_to=user_id).all()
-
+    
+        # Join Share and User to get username
+    sharedata = (
+        db.session.query(Share, User)
+        .join(User, Share.shared_by == User.id)
+        .filter(Share.shared_to == user_id)
+        .order_by(Share.share_time.desc())
+        .all()
+    )
+    shares = []
+    for share, user in sharedata:
+        # Add 8 hours to UTC time for Perth time
+        share_time_perth = (share.share_time + timedelta(hours=8)) if share.share_time else None
+        shares.append({
+            'content': share.content,
+            'weatherdata': share.weatherdata,
+            'shared_by': share.shared_by,
+            'shared_by_username': user.username,
+            'share_time': share_time_perth.strftime('%Y-%m-%d %H:%M') if share_time_perth else '',
+        })
     return shares

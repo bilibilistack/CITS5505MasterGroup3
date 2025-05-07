@@ -26,7 +26,7 @@ migrate = Migrate(application, db)
 import app.routes              
 from app.auth_routes import auth_bp
 from app.upload_routes import upload_bp    
-from app.share import share_bp
+from app.share_routes import share_bp
 from app.api_routes import api_bp
                              
 
