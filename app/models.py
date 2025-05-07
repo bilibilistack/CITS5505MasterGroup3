@@ -1,8 +1,5 @@
-from flask_sqlalchemy import SQLAlchemy
+from app import db
 from werkzeug.security import generate_password_hash, check_password_hash
-
-db = SQLAlchemy()
-
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -23,7 +20,7 @@ class User(db.Model):
 class WeatherData(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date, nullable=False)
-    city = db.Column(db.String(100), nullable=False)
+    city = db.Column(db.String(100),db.ForeignKey('city.city_name', name='fk_weatherdata_city_cityname'), nullable=False)
     type = db.Column(db.String(50), nullable=False)
     temp_min = db.Column(db.Float, nullable=False)
     temp_max = db.Column(db.Float, nullable=False)
@@ -32,7 +29,7 @@ class WeatherData(db.Model):
     wind_speed = db.Column(db.Float, nullable=False)
     humidity = db.Column(db.Float, nullable=False)
     precip_mm = db.Column(db.Float, nullable=False)
-
+    city_rel = db.relationship('City', backref='weather_data', foreign_keys=[city])
 
 class Share(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -43,3 +40,11 @@ class Share(db.Model):
     shared_by_user = db.relationship('User', foreign_keys=[shared_by])
     shared_to_user = db.relationship('User', foreign_keys=[shared_to])
 
+class City(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    city_name = db.Column(db.String(100), unique=True, nullable=False)
+    lat = db.Column(db.Float, nullable=False)
+    lon = db.Column(db.Float, nullable=False)
+
+    def __repr__(self):
+        return f'<City {self.city_name}>'
