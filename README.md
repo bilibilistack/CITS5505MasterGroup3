@@ -75,8 +75,12 @@ activate.bat(cmd) or activate.ps1(powershell) or activate(bash)
 pip install flask flask-Migrate Flask-SQLAlchemy WTForms
 
 ```
+4. For first time, please run in codebase root directory:
+```
+flask db upgrade
+```
 
-4. In your project root directory, run:
+5. In your codebase root directory, run:
 
 ```
 python start_server.py
@@ -87,6 +91,14 @@ Once the server is running, open your browser and visit:
 http://127.0.0.1:5000
 
 
+##Instructions for how to run the tests for the application.
+
+If you want to load demo data，run:
+```
+python load_demo_data.py
+```
+
+##Stop the server:
 Press CTRL+C to quit
 
 ![Homepage](introduction_images/Homepage.png)
@@ -95,6 +107,4 @@ Press CTRL+C to quit
 
 
 
-##TODO:
-instructions for how to run the tests for the application.
 

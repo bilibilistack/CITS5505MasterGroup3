@@ -1,0 +1,287 @@
+[
+  {
+    "city": "Perth",
+    "main_spots": [
+      "Kings Park & Botanic Garden 🌿",
+      "Cottesloe Beach 🏖️",
+      "Perth Zoo 🐨",
+      "Fremantle Markets 🛍️",
+      "Swan River 🚤",
+      "Perth Cultural Centre 🎨"
+    ],
+    "tips": [
+      "Use public transport with a SmartRider card 🚍",
+      "Day trips to Rottnest Island 🐾 and Swan Valley 🍷 are highly recommended",
+      "Avoid peak-hour traffic if driving 🚗",
+      "Visit Elizabeth Quay at night for scenic views 🌆"
+    ]
+  },
+  {
+    "city": "Geraldton",
+    "main_spots": [
+      "HMAS Sydney II Memorial ⚓",
+      "Geraldton Foreshore 🌊",
+      "Museum of Geraldton 🏛️",
+      "Abrolhos Islands 🐠"
+    ],
+    "tips": [
+      "Visit in spring for wildflowers 🌸",
+      "Consider a scenic flight over the Abrolhos Islands ✈️",
+      "Watch for strong coastal winds 🌬️",
+      "Try locally caught seafood 🦐"
+    ]
+  },
+  {
+    "city": "Carnarvon",
+    "main_spots": [
+      "One Mile Jetty 🌉",
+      "Carnarvon Space Museum 🚀",
+      "Blowholes 🌊",
+      "Gascoyne River 🏞️"
+    ],
+    "tips": [
+      "Try local tropical fruits 🍌",
+      "Use as a base to explore Ningaloo Reef 🐬 and Shark Bay 🦈",
+      "Check tides before visiting blowholes 🌊",
+      "Stock up on supplies before heading north 🎒"
+    ]
+  },
+  {
+    "city": "Margaret River",
+    "main_spots": [
+      "Wineries 🍇",
+      "Mammoth Cave 🕳️",
+      "Surfers Point 🌊",
+      "Boranup Forest 🌲",
+      "Cape Leeuwin Lighthouse 💡"
+    ],
+    "tips": [
+      "Book wine tours in advance 🍷",
+      "Autumn is quieter for visiting cellar doors 🍂",
+      "Enjoy food and wine pairings at local estates 🍽️",
+      "Bring layers — coastal winds can be cool 🧥"
+    ]
+  },
+  {
+    "city": "Busselton",
+    "main_spots": [
+      "Busselton Jetty 🌉",
+      "Geographe Bay 🌅"
+    ],
+    "tips": [
+      "Ideal for families 👨‍👩‍👧‍👦",
+      "Book Jetty attractions online to avoid queues 🧾",
+      "Swim early before the wind picks up 🏊",
+      "Look for stingrays at dusk 🌠"
+    ]
+  },
+  {
+    "city": "Bunbury",
+    "main_spots": [
+      "Dolphin Discovery Centre 🐬",
+      "Bunbury Wildlife Park 🐨",
+      "Koombana Bay 🌊",
+      "Marlston Hill Lookout 🌄"
+    ],
+    "tips": [
+      "Visit early for dolphin sightings 🕘",
+      "Explore the art and cafe scene ☕🎨",
+      "Walk the Leschenault Inlet loop 🚶",
+      "Watch sunsets at Back Beach 🌅"
+    ]
+  },
+  {
+    "city": "Albany",
+    "main_spots": [
+      "The Gap and Natural Bridge 🌉",
+      "National Anzac Centre 🪖",
+      "Middleton Beach 🏖️",
+      "Torndirrup National Park 🌄"
+    ],
+    "tips": [
+      "Pack warm clothing 🧥",
+      "Good base for whale watching from June to October 🐋",
+      "Explore convict history at Albany Gaol ⛓️",
+      "Be cautious around cliff edges 🧗"
+    ]
+  },
+  {
+    "city": "Denmark",
+    "main_spots": [
+      "Greens Pool 💧",
+      "Elephant Rocks 🪨",
+      "Valley of the Giants Walk 🌳",
+      "Denmark River 🏞️"
+    ],
+    "tips": [
+      "Book early in summer 📅",
+      "Bring a camera for the stunning coast 📸",
+      "Sample local cheeses and wine 🧀🍷",
+      "Early morning visits offer calm water at Greens Pool 🌅"
+    ]
+  },
+  {
+    "city": "Esperance",
+    "main_spots": [
+      "Cape Le Grand NP ⛰️",
+      "Lucky Bay 🦘",
+      "Great Ocean Drive 🚙"
+    ],
+    "tips": [
+      "Be prepared for long drives 🛣️",
+      "Beaches are among the whitest in Australia 🏖️",
+      "Carry fuel and water if heading into the park ⛽💧",
+      "Spot kangaroos on the beach 🦘"
+    ]
+  },
+  {
+    "city": "Manjimup",
+    "main_spots": [
+      "Timber Park 🌲",
+      "Diamond Tree Lookout 🌳",
+      "Truffle farms 🍄"
+    ],
+    "tips": [
+      "Visit in winter for truffle season ❄️",
+      "Try locally made ciders and preserves 🍏",
+      "Climb the Diamond Tree only if confident 🧗‍♂️",
+      "Sample regional produce at weekend markets 🛍️"
+    ]
+  },
+  {
+    "city": "Collie",
+    "main_spots": [
+      "Wellington NP 🌳",
+      "Honeymoon Pool 💧",
+      "Collie Art Gallery 🎨"
+    ],
+    "tips": [
+      "Bring insect repellent 🦟",
+      "Great for swimming and forest hikes 🥾",
+      "Book campgrounds in advance 🏕️",
+      "Check fire bans before lighting campfires 🔥"
+    ]
+  },
+  {
+    "city": "Narrogin",
+    "main_spots": [
+      "Foxes Lair 🌸",
+      "Dryandra Woodland 🌳"
+    ],
+    "tips": [
+      "Best in wildflower season 🌼",
+      "Look for numbats in Dryandra 🐿️",
+      "Bring binoculars for birdwatching 🔭",
+      "Download maps ahead — signal is spotty 📵"
+    ]
+  },
+  {
+    "city": "Katanning",
+    "main_spots": [
+      "Katanning Mosque 🕌",
+      "Kobeelya 🏠",
+      "Local art trails 🎨"
+    ],
+    "tips": [
+      "Try local halal food 🍛",
+      "Unique multicultural town 🤝",
+      "Check out the mural trail 🖼️",
+      "Visit weekend markets for local crafts 🧵"
+    ]
+  },
+  {
+    "city": "Kalgoorlie",
+    "main_spots": [
+      "Super Pit Lookout 🪙",
+      "Goldfields Museum 🏛️",
+      "Questa Casa 🏠",
+      "Hannan Street 🛍️"
+    ],
+    "tips": [
+      "Follow the Golden Quest Trail 🗺️",
+      "Prepare for hot, dry weather ☀️",
+      "Historic pubs offer gold rush charm 🍺",
+      "Watch for kangaroos on the roads 🚸"
+    ]
+  },
+  {
+    "city": "Augusta",
+    "main_spots": [
+      "Cape Leeuwin Lighthouse 💡",
+      "Jewel Cave 🕳️"
+    ],
+    "tips": [
+      "Quieter than Margaret River 🌿",
+      "Enjoy great coastal views 🌊",
+      "Try Augusta Bakery's pies 🥧",
+      "Lighthouse tours are weather dependent ☁️"
+    ]
+  },
+  {
+    "city": "Lancelin",
+    "main_spots": [
+      "Lancelin Sand Dunes 🏜️",
+      "Windsurfing areas 🏄",
+      "Beach fishing 🎣"
+    ],
+    "tips": [
+      "Rent sandboards for dunes 🏂",
+      "Go early before it gets windy 🕗",
+      "Bring sunglasses — bright sand 🌞",
+      "Check for off-road restrictions 🚧"
+    ]
+  },
+  {
+    "city": "Kellerberrin",
+    "main_spots": [
+      "Pioneer Museum 🏛️",
+      "Mount Caroline Reserve 🏞️"
+    ],
+    "tips": [
+      "Wheatbelt town with quiet charm 🌾",
+      "Check out nearby silo art 🎨",
+      "Ideal stop on Great Eastern Highway 🛣️",
+      "Catch a sunset from hilltops 🌇"
+    ]
+  },
+  {
+    "city": "Hyden",
+    "main_spots": [
+      "Wave Rock 🌊",
+      "Hippo’s Yawn 🦛",
+      "Mulka’s Cave 🪨"
+    ],
+    "tips": [
+      "Go early for photos 📸",
+      "Spring brings wildflowers 🌺",
+      "Entry fees apply — bring cash 💵",
+      "Short hikes around rock formations 🥾"
+    ]
+  },
+  {
+    "city": "Northcliffe",
+    "main_spots": [
+      "Understory Trail 🌳",
+      "Shannon NP 🌲"
+    ],
+    "tips": [
+      "Great for forest walks 🍃",
+      "Ideal for digital detox 📴",
+      "Download offline maps 📱",
+      "Visit art galleries with local woodcraft 🪵"
+    ]
+  },
+  {
+    "city": "Hopetoun",
+    "main_spots": [
+      "Fitzgerald River NP 🌿",
+      "Barrens Beach 🏖️"
+    ],
+    "tips": [
+      "Stock up before entering the park 🎒",
+      "Remote and scenic for nature lovers 🧭",
+      "Be self-sufficient — limited facilities 🧰",
+      "Spring is ideal for flowers and walks 🌸"
+    ]
+  }
+]

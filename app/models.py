@@ -33,7 +33,8 @@ class WeatherData(db.Model):
 
 class Share(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.String(500), nullable=False) 
+    content = db.Column(db.String(500), nullable=False)
+    weatherdata = db.Column(db.String(500), nullable=False)  
     shared_by = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) 
     shared_to = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) 
     share_time = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp())
@@ -45,6 +46,9 @@ class City(db.Model):
     city_name = db.Column(db.String(100), unique=True, nullable=False)
     lat = db.Column(db.Float, nullable=False)
     lon = db.Column(db.Float, nullable=False)
+    main_spots = db.Column(db.String(500), nullable=True)  # List of main spots in the city
+    tips = db.Column(db.String(1000), nullable=True)  # Tips for the city
 
     def __repr__(self):
         return f'<City {self.city_name}>'
+

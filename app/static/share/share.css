@@ -18,7 +18,10 @@ body {
     display: flex;
     background: linear-gradient(to bottom right, #667b94, #a3b1c6);
 }
-
+.shared-weather-info-details p {
+    color: #4d4b4b !important;
+    text-align: left !important;
+}
 /* Sidebar Style */
 .sidebar {
     width: 250px;
@@ -570,7 +573,7 @@ body {
     gap: 1rem;
 }
 
-.view-btn, .download-btn {
+.view-btn, .delete-btn {
     padding: 0.5rem 1rem;
     border-radius: 6px;
     cursor: pointer;
@@ -591,13 +594,13 @@ body {
     background-color: #2563eb;
 }
 
-.download-btn {
+.delete-btn {
     background-color: #f3f4f6;
     color: #333;
     border: 1px solid #ddd;
 }
 
-.download-btn:hover {
+.delete-btn:hover {
     background-color: #e5e7eb;
 }
 /* Responsive design */

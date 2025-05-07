@@ -218,6 +218,82 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     }
 
+    // Travel Tips Button Handler
+    document.getElementById('get-tips-btn').addEventListener('click', async function() {
+        const cityName = selectedCity;
+        const tipsList = document.getElementById('travel-tips-list');
+        const spotsList = document.getElementById('main-spots-list');
+        const tipsSection = document.getElementById('travel-tips-section');
+        const spotsSection = document.getElementById('main-spots-section');
+        tipsSection.style.display = 'none';
+        spotsSection.style.display = 'none';
+        tipsList.innerHTML = '<li>Loading...</li>';
+        spotsList.innerHTML = '';
+
+        try {
+            const resp = await fetch(`/api/travel_tips?city_name=${encodeURIComponent(cityName)}`);
+            const data = await resp.json();
+            tipsList.innerHTML = '';
+            spotsList.innerHTML = '';
+            if (data.length > 0) {
+                spotsSection.style.display = '';
+                tipsSection.style.display = '';
+                // Main Spots
+                if (data[0].main_spots.length > 0) {
+                    data[0].main_spots.forEach(spot => {
+                        const li = document.createElement('li');
+                        li.textContent = spot;
+                        spotsList.appendChild(li);
+                    });
+                } else {
+                    spotsList.innerHTML = '<li>No main spots available for this city.</li>';
+                }
+                // Travel Tips
+                if (data[0].tips.length > 0) {
+                    data[0].tips.forEach(tip => {
+                        const li = document.createElement('li');
+                        li.textContent = tip;
+                        tipsList.appendChild(li);
+                    });
+                } else {
+                    tipsList.innerHTML = '<li>No tips available for this city.</li>';
+                }
+            } else {
+                spotsSection.style.display = '';
+                tipsSection.style.display = '';
+                spotsList.innerHTML = '<li>No main spots available for this city.</li>';
+                tipsList.innerHTML = '<li>No tips available for this city.</li>';
+            }
+        } catch (err) {
+            spotsSection.style.display = '';
+            tipsSection.style.display = '';
+            tipsList.innerHTML = '<li>Error loading tips.</li>';
+        }
+    });
+
+    // Share Button Handler
+    document.getElementById('share-to-btn').addEventListener('click', function() {
+        // Get selected city and date
+        const city = encodeURIComponent(selectedCity);
+        const date = encodeURIComponent(document.getElementById('date-slider').value);
+    
+        // Find the weather data for the selected city and date
+        const weather = weatherData.find(w => w.city === selectedCity && w.date === date);
+        let params = `city=${city}&date=${date}`;
+        if (weather) {
+            const iconName = getWeatherIconName(weather.weather, weather.is_day);
+            params +=
+            `&temperature_low=${encodeURIComponent(weather.temp_min || 'N/A')}` +
+            `&temperature_high=${encodeURIComponent(weather.temp_max || 'N/A')}` +
+            `&weather_description=${encodeURIComponent(iconName.split('-')[0] || 'N/A')}` +
+            `&wind_speed=${encodeURIComponent(weather.wind_speed || 'N/A')}` +
+            `&wind_direction=${encodeURIComponent(weather.wind_direction || '')}` +
+            `&icon_name=${encodeURIComponent(iconName)}`;
+        }
+        // Redirect to /share with all parameters
+        window.location.href = `/share?${params}`;
+    });
+
     // Initial Setup
     sidebar.addClass('collapsed');
     checkScreenSize();

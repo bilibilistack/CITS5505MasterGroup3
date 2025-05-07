@@ -28,6 +28,18 @@ def load_cities(city_json_path):
     db.session.commit()
     print(f"loaded {len(cities)} cities.")
 
+def load_city_tips(city_tips_json_path):
+    city_tips = load_json(city_tips_json_path)
+    for ct in city_tips:
+        city = City.query.filter_by(city_name=ct['city']).first()
+        if city:
+            # Join main_spots and tips as strings for db column constraint
+            city.main_spots = ', '.join(ct.get('main_spots', []))
+            city.tips = '; '.join(ct.get('tips', []))
+            db.session.add(city)
+    db.session.commit()
+    print(f"Updated {len(city_tips)} cities with main_spots and tips.")
+
 def load_weather(weather_json_path):
     weather_data = load_json(weather_json_path)
     for w in weather_data:
@@ -84,14 +96,21 @@ if __name__ == "__main__":
 
     # Location of city and weather feeds JSON files
     city_json = os.path.join('app', 'static', 'chart', 'resources', 'city_lat_lon.json')
+    city_tips_json = os.path.join('app', 'static', 'chart', 'resources', 'city_tips.json')
     weather_json = os.path.join('app', 'static', 'chart', 'resources', 'wa_weather_data.json')
     with application.app_context():
-        # Clear tables before loading new data
-        WeatherData.query.delete()
-        City.query.delete()
-        User.query.delete()
+    # Clear tables before loading new data
+    # Use db.inspect(db.engine).has_table to avoid deprecation warning and ensure compatibility
+        inspector = db.inspect(db.engine)
+        if inspector.has_table('weather_data'):
+            db.session.execute(WeatherData.__table__.delete())
+        if inspector.has_table('city'):
+            db.session.execute(City.__table__.delete())
+        if inspector.has_table('user'):
+            db.session.execute(User.__table__.delete())
         db.session.commit()
         # Load data
         load_cities(city_json)
+        load_city_tips(city_tips_json)
         load_weather(weather_json)
         load_users()
