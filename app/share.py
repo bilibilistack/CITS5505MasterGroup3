@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify, session, render_template, redirec
 from app.models import User 
 from app.models import Share
 from app.models import db
+import json
 
 # Create a Blueprint for the share module to organize routes
 share_bp = Blueprint('share', __name__)
@@ -14,12 +15,12 @@ def search_users():
     """
     # Retrieve the search term and current user from the GET request
     search_term = request.args.get('searchTerm')  
-    currentUserName = session.get('username')
+    currentusername = session.get('username')
 
     # Apply a case-insensitive search for usernames containing the search term
     # Also, exclude the current user from the results
     users = User.query.filter(User.username.ilike(f'%{search_term}%')) \
-        .filter(User.username != currentUserName)  # Exclude the current user from search results
+        .filter(User.username != currentusername)  # Exclude the current user from search results
     
     # Prepare the result as a list of dictionaries containing the user ID and username
     result = [{'id': user.id, 'username': user.username} for user in users]
@@ -35,20 +36,21 @@ def share_data():
     # get data and user id from front
     selected_users = request.json.get('selectedUsers')
     content = request.json.get('content')
-    currentUserId = session.get('user_id')
+    currentuserid = session.get('user_id')
+    urlparams=request.json.get('urlParams')
 
     # check if there any data in select
     if not selected_users or not content:
         return jsonify({"success": False, "message": "No users selected or content missing."}), 400
 
     # make sure current user do the share action
-    if currentUserId not in selected_users:
-        selected_users.append(currentUserId) 
+    if currentuserid not in selected_users:
+        selected_users.append(currentuserid) 
 
     # save share record
     for user_id in selected_users:
-        if user_id != currentUserId:  
-            share = Share(content=content, shared_by=currentUserId, shared_to=user_id)
+        if user_id != currentuserid:  
+            share = Share(content=content, weatherdata=json.dumps(urlparams), shared_by=currentuserid, shared_to=user_id)
             db.session.add(share)
 
     db.session.commit()

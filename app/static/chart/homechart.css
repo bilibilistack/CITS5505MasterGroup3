@@ -150,7 +150,7 @@
     color: #333;
 }
 
-#get-tips-btn {
+.content-box-btn {
     font-size: 1.3rem;
     padding: 16px 36px;
     border: none;
@@ -162,6 +162,6 @@
     transition: background 0.2s;
     box-shadow: 0 2px 6px rgba(96, 125, 139, 0.15);
 }
-#get-tips-btn:hover {
+.content-box-btn:hover {
     background: #455a64;
 }

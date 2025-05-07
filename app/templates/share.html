@@ -19,12 +19,12 @@
                     <div class="share-area">
                         <!-- Screenshot preview placeholder -->
                         <div class="screenshot-preview">
-                            <div class="screenshot-placeholder">
+                            <div class="screenshot-placeholder" id="weather-screenshot">
                                 <i class="fas fa-chart-line placeholder-icon"></i>
-                                <p>Your visualization preview will appear here</p>
+                                <p>Please go to home to select weather and share</p>
                             </div>
-                            <button class="capture-btn" id="capture-btn">
-                                <i class="fas fa-camera"></i> Capture Visualization
+                            <button class="capture-btn" onclick="location.href='{{ url_for('homechart') }}'">
+                                <i class="fas fa-camera"></i> Go to Capture Weather
                             </button>
                         </div>
                         
@@ -49,7 +49,7 @@
                             <!-- Share message input -->
                             <div class="share-message-container">
                                 <label for="share-message">Message (Optional):</label>
-                                <textarea id="share-message" placeholder="Add a message to your share..."></textarea>
+                                <textarea id="share-message" placeholder="Add a message to your share...">The weather looks good, shall we go there?</textarea>
                             </div>
                             
                             <!-- Share button -->

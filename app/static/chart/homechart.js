@@ -271,6 +271,29 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     });
 
+    // Share Button Handler
+    document.getElementById('share-to-btn').addEventListener('click', function() {
+        // Get selected city and date
+        const city = encodeURIComponent(selectedCity);
+        const date = encodeURIComponent(document.getElementById('date-slider').value);
+    
+        // Find the weather data for the selected city and date
+        const weather = weatherData.find(w => w.city === selectedCity && w.date === date);
+        let params = `city=${city}&date=${date}`;
+        if (weather) {
+            const iconName = getWeatherIconName(weather.weather, weather.is_day);
+            params +=
+            `&temperature_low=${encodeURIComponent(weather.temp_min || 'N/A')}` +
+            `&temperature_high=${encodeURIComponent(weather.temp_max || 'N/A')}` +
+            `&weather_description=${encodeURIComponent(iconName.split('-')[0] || 'N/A')}` +
+            `&wind_speed=${encodeURIComponent(weather.wind_speed || 'N/A')}` +
+            `&wind_direction=${encodeURIComponent(weather.wind_direction || '')}` +
+            `&icon_name=${encodeURIComponent(iconName)}`;
+        }
+        // Redirect to /share with all parameters
+        window.location.href = `/share?${params}`;
+    });
+
     // Initial Setup
     sidebar.addClass('collapsed');
     checkScreenSize();

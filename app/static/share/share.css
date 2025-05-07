@@ -18,7 +18,10 @@ body {
     display: flex;
     background: linear-gradient(to bottom right, #667b94, #a3b1c6);
 }
-
+.shared-weather-info-details p {
+    color: #4d4b4b !important;
+    text-align: left !important;
+}
 /* Sidebar Style */
 .sidebar {
     width: 250px;

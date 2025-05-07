@@ -48,7 +48,33 @@ $(document).ready(function () {
     // Check screen size
     checkScreenSize();
     $(window).resize(checkScreenSize);
+    
+    const resourcesBaseUrl = "/static/chart/resources"; // Base URL for resources
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const city = urlParams.get('city');
+    const date = urlParams.get('date');
+    const temperature_low = urlParams.get('temperature_low');
+    const temperature_high = urlParams.get('temperature_high');
+    const weather_description = urlParams.get('weather_description');
+    const wind_speed = urlParams.get('wind_speed');
+    const wind_direction = urlParams.get('wind_direction');
+    const iconName = urlParams.get('icon_name') ; // Default icon name if not provided
+    // Example: Display selected weather info at the top of the share page
+    if (city && date) {
+        const weatherInfoHtml = `
+            <div class="shared-weather-info">
+            <h4>Weather of ${city} </h4>
+            <div class="shared-weather-info-details">
+                <p>Date: ${date}</p>
+                <p>Temperature: ${temperature_low}°C  ~  ${temperature_high}°C</p>
+                <p>Weather: <img class="weather-icon" src="${resourcesBaseUrl}/animated_weather/${iconName}.svg" />  ${weather_description|| 'N/A'}</p>
+                <p>Wind Speed: ${wind_speed ? wind_speed + ' km/h' : 'N/A'}</p>
+            </div>
+            </div>
+        `;
+        $('#weather-screenshot').html(weatherInfoHtml);
+    }
 
     //search user
     searchBtn.click(function () {
@@ -81,8 +107,8 @@ $(document).ready(function () {
     });
 
     // Trigger search on Enter key in the input field
-    $('#search-user').keydown(function(e) {
-            $('#search-btn').click();
+    $('#search-user').keydown(function (e) {
+        $('#search-btn').click();
     });
 
     // Share button click handler
@@ -108,6 +134,16 @@ $(document).ready(function () {
         const dataToSend = {
             selectedUsers: selectedUsers,
             content: contentToShare,
+            urlParams: {
+                city: city,
+                date: date,
+                temperature_low: temperature_low,
+                temperature_high: temperature_high,
+                weather_description: weather_description,
+                wind_speed: wind_speed,
+                wind_direction: wind_direction,
+                iconName: iconName
+            }
         };
 
         // Send the POST request with JSON data
