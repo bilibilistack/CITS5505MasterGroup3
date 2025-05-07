@@ -86,10 +86,15 @@ if __name__ == "__main__":
     city_json = os.path.join('app', 'static', 'chart', 'resources', 'city_lat_lon.json')
     weather_json = os.path.join('app', 'static', 'chart', 'resources', 'wa_weather_data.json')
     with application.app_context():
-        # Clear tables before loading new data
-        WeatherData.query.delete()
-        City.query.delete()
-        User.query.delete()
+    # Clear tables before loading new data
+    # Use db.inspect(db.engine).has_table to avoid deprecation warning and ensure compatibility
+        inspector = db.inspect(db.engine)
+        if inspector.has_table('weather_data'):
+            db.session.execute(WeatherData.__table__.delete())
+        if inspector.has_table('city'):
+            db.session.execute(City.__table__.delete())
+        if inspector.has_table('user'):
+            db.session.execute(User.__table__.delete())
         db.session.commit()
         # Load data
         load_cities(city_json)
