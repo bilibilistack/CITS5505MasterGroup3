@@ -1,5 +1,6 @@
-from flask import Blueprint, jsonify, request
-from .models import WeatherData, City
+from flask import Blueprint, jsonify, request, session, abort
+from .models import WeatherData, City, Share
+from app import db
 
 api_bp = Blueprint('api', __name__)
 
@@ -56,3 +57,27 @@ def get_travel_tips():
         for c in data
     ]
     return jsonify(result)
+
+# API to update is_read, is_deleted, is_favorite for a Share
+@api_bp.route('/api/share/<int:share_id>/update_flags', methods=['POST'])
+def update_share_flags(share_id):
+    share = Share.query.get_or_404(share_id)
+    # Get current user ID from session to avoid unauthorized modification
+    user_id = session.get('user_id')
+    if user_id is None or share.shared_to != user_id:
+        abort(403, description="You are not authorized to update this share message.")
+    data = request.get_json()
+    if 'is_read' in data:
+        share.is_read = bool(data['is_read'])
+    if 'is_deleted' in data:
+        share.is_deleted = bool(data['is_deleted'])
+    if 'is_favorite' in data:
+        share.is_favorite = bool(data['is_favorite'])
+    db.session.commit()
+    return jsonify({
+        "success": True,
+        "share_id": share.id,
+        "is_read": share.is_read,
+        "is_deleted": share.is_deleted,
+        "is_favorite": share.is_favorite
+    })

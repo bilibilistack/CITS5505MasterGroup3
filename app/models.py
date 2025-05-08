@@ -38,6 +38,9 @@ class Share(db.Model):
     shared_by = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) 
     shared_to = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) 
     share_time = db.Column(db.DateTime, nullable=False, default=db.func.current_timestamp())
+    is_read = db.Column(db.Boolean, default=False)  # Flag to indicate if the share has been read
+    is_deleted = db.Column(db.Boolean, default=False)  # Flag to indicate if the share has been deleted
+    is_favorite = db.Column(db.Boolean, default=False)  # Flag to indicate if the share is marked as favorite
     shared_by_user = db.relationship('User', foreign_keys=[shared_by])
     shared_to_user = db.relationship('User', foreign_keys=[shared_to])
 
