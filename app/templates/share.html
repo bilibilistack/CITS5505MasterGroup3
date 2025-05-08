@@ -11,109 +11,117 @@
 {% block header_subtitle %}Please enter user you want to share{% endblock %}
 
 {% block main_content %}
-                <!-- Share section -->
-                <div class="share-container">
-                    <h2 class="section-title">Share Weather Visualization</h2>
-                    
-                    <!-- Share content area -->
-                    <div class="share-area">
-                        <!-- Screenshot preview placeholder -->
-                        <div class="screenshot-preview">
-                            <div class="screenshot-placeholder" id="weather-screenshot">
-                                <i class="fas fa-chart-line placeholder-icon"></i>
-                                <p>Please go to home to select weather and share</p>
-                            </div>
-                            <button class="capture-btn" onclick="location.href='{{ url_for('homechart') }}'">
-                                <i class="fas fa-camera"></i> Go to Capture Weather
-                            </button>
-                        </div>
-                        
-                        <!-- Share options -->
-                        <div class="share-options">
-                            <!-- Search user field -->
-                            <div class="search-user-container">
-                                <label for="search-user">Search User:</label>
-                                <div class="search-input-wrapper">
-                                    <input type="text" id="search-user" placeholder="Enter username to share with...">
-                                    <button class="search-btn" id="search-btn">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <!-- User selection results -->
-                            <div class="user-results" id="user-results">
-                                <!-- User results will be populated dynamically -->
-                            </div>
-                            
-                            <!-- Share message input -->
-                            <div class="share-message-container">
-                                <label for="share-message">Message (Optional):</label>
-                                <textarea id="share-message" placeholder="Add a message to your share...">The weather there looks good, shall we go there?</textarea>
-                            </div>
-                            
-                            <!-- Share button -->
-                            <div class="share-actions">
-                                <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
-                                <button class="share-btn" id="share-btn">
-                                    <i class="fas fa-share-alt"></i> Share
-                                </button>
-                            </div>
-                        </div>
+<!-- Share section -->
+<div class="share-container">
+    <h2 class="section-title">Share Weather Visualization</h2>
+
+    <!-- Share content area -->
+    <div class="share-area">
+        <!-- Screenshot preview placeholder -->
+        <div class="screenshot-preview">
+            <div class="screenshot-placeholder" id="weather-screenshot">
+                <i class="fas fa-chart-line placeholder-icon"></i>
+                <p>Please go to home to select weather and share</p>
+            </div>
+            <button class="capture-btn" onclick="location.href='{{ url_for('homechart') }}'">
+                <i class="fas fa-camera"></i> Go to Capture Weather
+            </button>
+        </div>
+
+        <!-- Share options -->
+        <div class="share-options">
+            <!-- Search user field -->
+            <div class="search-user-container">
+                <label for="search-user">Search User:</label>
+                <div class="search-input-wrapper">
+                    <input type="text" id="search-user" placeholder="Enter username to share with...">
+                    <button class="search-btn" id="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- User selection results -->
+            <div class="user-results" id="user-results">
+                <!-- User results will be populated dynamically -->
+            </div>
+
+            <!-- Share message input -->
+            <div class="share-message-container">
+                <label for="share-message">Message (Optional):</label>
+                <textarea id="share-message"
+                    placeholder="Add a message to your share...">The weather there looks good, shall we go there?</textarea>
+            </div>
+
+            <!-- Share button -->
+            <div class="share-actions">
+                <button class="share-btn" id="share-btn">
+                    <i class="fas fa-share-alt"></i> Share
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Shared with me section -->
+    <div class="shared-with-me">
+        <h3 class="subsection-title">Shared With Me</h3>
+
+        <!-- Filter and sort options -->
+        <div class="filter-options">
+            <div class="filter-group">
+                <label for="filter-date">Filter by:</label>
+                <select id="filter-date">
+                    <option value="all">All time</option>
+                    <option value="today">Today</option>
+                    <option value="week">This week</option>
+                    <option value="month">This month</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="sort-by">Sort by:</label>
+                <select id="sort-by">
+                    <option value="newest">Newest first</option>
+                    <option value="oldest">Oldest first</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Shared items message center -->
+        <div class="message-center" id="message-center">
+            {% for share in shares %}
+            <div class="shared-item" data-content="{{ share.content }}"
+                data-weatherdata='{{ share.weatherdata|safe }}'>
+                <div class="shared-item-header">
+                    <div class="shared-by">
+                        <i class="fas fa-user-circle"></i>
+                        <span class="user-name">{{ share.shared_by_username }}</span>
                     </div>
-                    <!-- Shared with me section -->
-                    <div class="shared-with-me">
-                        <h3 class="subsection-title">Shared With Me</h3>
-                        
-                        <!-- Filter and sort options -->
-                        <div class="filter-options">
-                            <div class="filter-group">
-                                <label for="filter-date">Filter by:</label>
-                                <select id="filter-date">
-                                    <option value="all">All time</option>
-                                    <option value="today">Today</option>
-                                    <option value="week">This week</option>
-                                    <option value="month">This month</option>
-                                </select>
-                            </div>
-                            <div class="filter-group">
-                                <label for="sort-by">Sort by:</label>
-                                <select id="sort-by">
-                                    <option value="newest">Newest first</option>
-                                    <option value="oldest">Oldest first</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <!-- Shared items message center -->
-                        <div class="message-center" id="message-center">
-                            {% for share in shares %}
-                            <div class="shared-item">
-                                <div class="shared-item-header">
-                                    <div class="shared-by">
-                                        <i class="fas fa-user-circle"></i>
-                                        <span class="user-name">{{ share.shared_by_username }}</span>
-                                    </div>
-                                    <div class="shared-time">{{ share.share_time }}</div>
-                                </div>
-                                <div class="shared-item-content">
-                                    <div class="shared-details">
-                                        <p class="shared-message">{{ share.content }}</p>
-                                        <div class="shared-actions">
-                                            <button class="view-btn" id="view-btn-{{ share.id }}">
-                                                <i class="fas fa-eye"></i> View
-                                            </button>
-                                            <button class="delete-btn" id="delete-btn-{{ share.id }}">
-                                                <i class="fas fa-trash-alt"></i> Delete
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endfor %}
+                    <div class="shared-time">{{ share.share_time }}</div>
+                </div>
+                <div class="shared-item-content">
+                    <div class="shared-details">
+                        <p class="shared-message">{{ share.content }}</p>
+                        <div class="shared-actions">
+                            <button class="view-btn" id="view-btn-{{ share.id }}">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                            <button class="delete-btn" id="delete-btn-{{ share.id }}">
+                                <i class="fas fa-trash-alt"></i> Delete
+                            </button>
                         </div>
                     </div>
                 </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div id="viewShareModal" class="custom-modal">
+    <div class="custom-modal-content">
+        <span class="custom-modal-close" id="closeModalBtn">&times;</span>
+        <div id="modal-share-content"></div>
+    </div>
+</div>
+
 {% endblock %}
 
 {% block extra_end_js %}

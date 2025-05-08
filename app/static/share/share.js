@@ -60,7 +60,7 @@ $(document).ready(function () {
     const wind_speed = urlParams.get('wind_speed');
     const wind_direction = urlParams.get('wind_direction');
     const iconName = urlParams.get('icon_name') ; // Default icon name if not provided
-    // Example: Display selected weather info at the top of the share page
+    // Example: Display selected weather info at the left top of the share page
     if (city && date) {
         const weatherInfoHtml = `
             <div class="shared-weather-info">
@@ -171,23 +171,6 @@ $(document).ready(function () {
         });
     });
 
-    // Handler for marking a share as read
-    $('.message-center').on('click', '.view-btn', function () {
-        const shareId = $(this).attr('id').replace('view-btn-', '');
-        $.ajax({
-            url: `/api/share/${shareId}/update_flags`,
-            type: 'POST',
-            contentType: 'application/json',
-            headers: { 'X-CSRFToken': csrfToken },
-            data: JSON.stringify({ is_read: true }),
-            success: function (response) {
-                // Optionally update UI to show as read
-            },
-            error: function () {
-                alert('Failed to mark as read.');
-            }
-        });
-    });
 
     // Handler for deleting a share
     $('.message-center').on('click', '.delete-btn', function () {
@@ -205,6 +188,74 @@ $(document).ready(function () {
                 alert('Failed to delete the message.');
             }
         });
+    });
+
+    // Modal open handler
+    $('.message-center').on('click', '.view-btn', function () {
+        const $item = $(this).closest('.shared-item');
+        const content = $item.data('content');
+        let weatherdataRaw = $item.data('weatherdata');
+        let weatherHtml = '';
+        const resourcesBaseUrl = "/static/chart/resources";
+
+        let weatherdata = weatherdataRaw;
+        if (typeof weatherdataRaw === 'string') {
+            try { weatherdata = JSON.parse(weatherdataRaw); } catch (e) { weatherdata = null; }
+        }
+
+        if (weatherdata && weatherdata.city && weatherdata.date) {
+            weatherHtml = `
+                <div class="shared-weather-info">
+                    <h4>Weather of ${weatherdata.city}</h4>
+                    <div class="shared-weather-info-details">
+                        <p>Date: ${weatherdata.date}</p>
+                        <p>Temperature: ${weatherdata.temperature_low}°C ~ ${weatherdata.temperature_high}°C</p>
+                        <p>Weather: <img class="weather-icon" src="${resourcesBaseUrl}/animated_weather/${weatherdata.iconName}.svg" />  ${weatherdata.weather_description || 'N/A'}</p>
+                        <p>Wind Speed: ${weatherdata.wind_speed ? weatherdata.wind_speed + ' km/h' : 'N/A'}</p>
+                    </div>
+                </div>
+            `;
+        } else {
+            weatherHtml = '<p>Weather data unavailable.</p>';
+        }
+
+        const modalHtml = `
+            <div>
+                <h5>Message:</h5><br>
+                <p>${content}</p><br>
+                <hr><br>
+                ${weatherHtml}
+            </div>
+        `;
+        $('#modal-share-content').html(modalHtml);
+        $('#viewShareModal').css('display', 'flex');
+
+        const shareId = $(this).attr('id').replace('view-btn-', '');
+        $.ajax({
+            url: `/api/share/${shareId}/update_flags`,
+            type: 'POST',
+            contentType: 'application/json',
+            headers: { 'X-CSRFToken': csrfToken },
+            data: JSON.stringify({ is_read: true }),
+            success: function (response) {
+                // Optionally update UI to show as read
+            },
+            error: function () {
+                alert('Failed to mark as read.');
+            }
+        });
+    });
+
+    // Modal close handler
+    $('#closeModalBtn').on('click', function () {
+        $('#viewShareModal').css('display', 'none');
+    });
+
+    // Close modal when clicking outside the modal content
+    $('#viewShareModal').on('click', function (e) {
+        if (e.target === this) {
+            $(this).css('display', 'none');
+        }
     });
 
 });

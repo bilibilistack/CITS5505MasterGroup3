@@ -660,3 +660,35 @@ body {
         font-size: 1.3rem;
     }
 }
+
+
+/* Modal background */
+.custom-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0; top: 0; width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Modal box */
+  .custom-modal-content {
+    background: #fff;
+    padding: 24px 20px;
+    border-radius: 8px;
+    max-width: 420px;
+    width: 90vw;
+    position: relative;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+  }
+  
+  /* Close button */
+  .custom-modal-close {
+    position: absolute;
+    top: 8px; right: 14px;
+    font-size: 2rem;
+    color: #888;
+    cursor: pointer;
+  }
