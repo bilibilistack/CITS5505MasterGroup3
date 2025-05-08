@@ -111,6 +111,9 @@ $(document).ready(function () {
         $('#search-btn').click();
     });
 
+    // Get CSRF token from hidden input (define only once)
+    const csrfToken = $('input[name="csrf_token"]').val();
+
     // Share button click handler
     shareBtn.click(function () {
         // Get all selected users
@@ -127,8 +130,6 @@ $(document).ready(function () {
             alert('Please select at least one user and provide content to share.');
             return;
         }
-
-        var csrfToken = $('input[name="csrf_token"]').val();
 
         // Prepare the data to be sent in the request body
         const dataToSend = {
@@ -170,5 +171,40 @@ $(document).ready(function () {
         });
     });
 
+    // Handler for marking a share as read
+    $('.message-center').on('click', '.view-btn', function () {
+        const shareId = $(this).attr('id').replace('view-btn-', '');
+        $.ajax({
+            url: `/api/share/${shareId}/update_flags`,
+            type: 'POST',
+            contentType: 'application/json',
+            headers: { 'X-CSRFToken': csrfToken },
+            data: JSON.stringify({ is_read: true }),
+            success: function (response) {
+                // Optionally update UI to show as read
+            },
+            error: function () {
+                alert('Failed to mark as read.');
+            }
+        });
+    });
+
+    // Handler for deleting a share
+    $('.message-center').on('click', '.delete-btn', function () {
+        const shareId = $(this).attr('id').replace('delete-btn-', '');
+        $.ajax({
+            url: `/api/share/${shareId}/update_flags`,
+            type: 'POST',
+            contentType: 'application/json',
+            headers: { 'X-CSRFToken': csrfToken },
+            data: JSON.stringify({ is_deleted: true }),
+            success: function (response) {
+                location.reload();
+            },
+            error: function () {
+                alert('Failed to delete the message.');
+            }
+        });
+    });
 
 });

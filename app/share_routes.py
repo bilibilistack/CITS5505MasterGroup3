@@ -71,7 +71,7 @@ def get_shares_for_user():
     sharedata = (
         db.session.query(Share, User)
         .join(User, Share.shared_by == User.id)
-        .filter(Share.shared_to == user_id)
+        .filter(Share.shared_to == user_id, Share.is_deleted == False) ## Filter out deleted messages
         .order_by(Share.share_time.desc())
         .all()
     )
@@ -80,6 +80,7 @@ def get_shares_for_user():
         # Add 8 hours to UTC time for Perth time
         share_time_perth = (share.share_time + timedelta(hours=8)) if share.share_time else None
         shares.append({
+            'id': share.id,
             'content': share.content,
             'weatherdata': share.weatherdata,
             'shared_by': share.shared_by,
