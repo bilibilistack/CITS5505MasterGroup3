@@ -81,3 +81,22 @@ def update_share_flags(share_id):
         "is_deleted": share.is_deleted,
         "is_favorite": share.is_favorite
     })
+
+@api_bp.route('/unread', methods=['GET'])
+def unread():
+    """
+    Get count of unread
+    """
+    user_id = session.get('user_id')
+    if not user_id:
+        return jsonify({"success": False, "message": "User not logged in."}), 401
+
+    unread_count = db.session.query(Share).filter(
+        Share.shared_to == user_id,
+        ((Share.is_read == 0)),
+        (Share.is_deleted == 0)  
+    ).count()
+
+    return jsonify({
+        "unread_count": unread_count
+    })
