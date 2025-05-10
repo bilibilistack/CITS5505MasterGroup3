@@ -46,9 +46,18 @@
             </table>
         </div>
     </div>
+    <div class="getweather-section" >
+        <button id="run-getweather-btn" class="getweather-btn">Sync Latest Weather Data from Internet</button>
+        <div class="getweather-progress-container">
+            <textarea id="getweather-progress" readonly class="getweather-progress-textarea">Idle</textarea><br>
+            <p> It will take several minutes to finish, please be patient.</p><br>
+            <p> We will automatically update the weather data in the last two months and future 7 days.</p><br>
+        </div>
+    </div>
 </div>
 {% endblock %}
 
 {% block extra_end_js %}
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
 <script src="{{url_for('static',filename='upload/upload.js')}}"></script>
 {% endblock %}
