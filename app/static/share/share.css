@@ -823,3 +823,20 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+.main-content {
+   display: block !important;
+   gap: 0 !important;
+}
+
+.sidebar.collapsed ~ .content-wrapper {
+   padding-left: 60px;
+   padding-right: 60px;
+}
+
+@media (max-width: 768px) {
+   .sidebar.collapsed ~ .content-wrapper {
+       padding-left: 0;
+       padding-right: 0;
+   }
+}
