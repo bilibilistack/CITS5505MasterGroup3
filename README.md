@@ -72,7 +72,7 @@ activate.bat(cmd) or activate.ps1(powershell) or activate(bash)
 ```
 3. Install required modules:
 ```
-pip install flask flask-Migrate Flask-SQLAlchemy WTForms
+pip install flask flask-Migrate Flask-SQLAlchemy WTForms flask-socketio requests pandas
 
 ```
 4. For first time, please run in codebase root directory:

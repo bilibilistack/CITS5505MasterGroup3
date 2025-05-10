@@ -3,6 +3,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect
+from flask_socketio import SocketIO
 
 db = SQLAlchemy()
 application = Flask(__name__)
@@ -10,6 +11,7 @@ application = Flask(__name__)
 # Set the secret key used by Flask sessions
 csrf = CSRFProtect(application)
 
+socketio = SocketIO(application)  
 
 # sqllite database path folder
 os.makedirs('../instance/', exist_ok=True)
