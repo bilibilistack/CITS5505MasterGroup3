@@ -34,9 +34,11 @@
                         <i class="nav-icon upload-icon"></i>
                         <span class="nav-text">Upload</span>
                     </a>
+                    <!-- Add unread bubbles to the sidebar -->
                     <a href="{{ url_for('share') }}" class="nav-item" id="nav-share">
                         <i class="nav-icon share-icon"></i>
                         <span class="nav-text">Share</span>
+                        <span class="unread-bubble" id="sidebar-unread" style="display: none;">0</span>
                     </a>
                     <a href="{{ url_for('auth.logout') }}" class="nav-item" id="nav-signout">
                         <i class="fa-solid fa-right-from-bracket"></i>
@@ -46,9 +48,10 @@
             </div>
         </div>
 
-        <!-- Sidebar Toggle Button -->
+        <!-- Add unread bubble to hamburger button -->
         <button id="show-sidebar" class="show-sidebar-btn">
             <i class="fas fa-bars"></i>
+            <span class="unread-bubble" id="hamburger-unread" style="display: none;">0</span>
         </button>
 
         <!-- Content Wrapper -->
@@ -72,7 +75,33 @@
         </div>
     </div>
 
-
     {% block extra_end_js %}{% endblock %}
+    
+    <script>
+        function fetchUnreadCount() {
+            $.ajax({
+                url: '/unread',
+                type: 'GET',
+                success: function(response) {
+                    if (response.unread_count > 0) {
+                        $('#hamburger-unread').text(response.unread_count).show();
+                        $('#sidebar-unread').text(response.unread_count).show();
+                    } else {
+                        $('#hamburger-unread').hide();
+                        $('#sidebar-unread').hide();
+                    }
+                },
+                error: function() {
+                    console.error('Failed to fetch unread count');
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            fetchUnreadCount();
+            
+            setInterval(fetchUnreadCount, 5000);
+        });
+    </script>
 </body>
 </html>
