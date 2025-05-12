@@ -11,39 +11,59 @@
 </head>
 <body>
     <div class="container">
+        <!-- Flash messages display area -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        
         <!-- Form container that holds the registration form -->
         <div class="form-container">
             <!-- Page heading -->
             <h1>Join us today</h1>
             <!-- Registration form -->
             <form id="registerForm" method="POST">
-                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                {{ form.hidden_tag() }}
                 <div class="form-group">
                     <!-- Username input group -->
                     <label for="newUsername">New Username</label>
-                    <input type="text" id="newUsername" name="newUsername" required>
+                    {{ form.username(id="newUsername", required=True, class_="form-control") }}
+                    {% for error in form.username.errors %}
+                        <div class="error-message">{{ error }}</div>
+                    {% endfor %}
                 </div>
                 <div class="form-group">
                     <!-- email input group -->
                     <label for="email">Email</label>
-                    <input type="text" id="email" name="email" required>
+                    {{ form.email(id="email", required=True, class_="form-control") }}
+                    {% for error in form.email.errors %}
+                        <div class="error-message">{{ error }}</div>
+                    {% endfor %}
                 </div>
                 <div class="form-group">
                     <!-- Password input group -->
                     <label for="newPassword">New Password</label>
-                    <input type="password" id="newPassword" name="newPassword" required>
+                    {{ form.password(id="newPassword", required=True, class_="form-control") }}
+                    {% for error in form.password.errors %}
+                        <div class="error-message">{{ error }}</div>
+                    {% endfor %}
                 </div>
                 <div class="form-group">
                     <!-- Confirm Password input group -->
                     <label for="confirmPassword">Confirm Password</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    {{ form.confirm_password(id="confirmPassword", required=True, class_="form-control") }}
+                    {% for error in form.confirm_password.errors %}
+                        <div class="error-message">{{ error }}</div>
+                    {% endfor %}
                 </div>
                 <!-- Error message display area -->
                 <div class="error-message" id="register-error-message"></div>
                 <div class="form-group">
                     <!-- Submit button group -->
-                    <!-- <button type="submit" class="btn">Next</button> -->
-                    <input type="submit" class="btn" value="Register">
+                    {{ form.submit(class_="btn") }}
                 </div>
                 <div class="form-footer">
                     <!-- Login link -->
@@ -52,8 +72,5 @@
             </form>
         </div>
     </div>
-
-    <!-- Import JavaScript -->
-    <!-- <script src="login and register.js"></script> -->
 </body>
 </html>

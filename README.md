@@ -82,12 +82,20 @@ CITS5505Group3/
     ```
 3. Install required modules:  
     ```
-    pip install flask flask-Migrate Flask-SQLAlchemy WTForms flask-socketio requests pandas
+    pip install flask flask-Migrate Flask-SQLAlchemy flask-login WTForms flask-socketio requests pandas email_validator
     ```
 4. For the first time, run in the codebase root directory:  
     ```
     flask db upgrade
     ```
+
+5. Add SECRET_KEY to ENV (Please replace with your own key string!):
+    ```
+    Linux: export SECRET_KEY='YOUROWNKEY'
+    CMD: set SECRET_KEY=YOUROWNKEY
+    Powershell: $env:SECRET_KEY = "YOUROWNKEY"
+    ```
+
 5. Start the server:  
     ```
     python start_server.py
