@@ -90,9 +90,11 @@ CITS5505Group3/
     ```
 
 5. Add SECRET_KEY to ENV (Please replace with your own key string!):
-   Linux: export SECRET_KEY='YOUROWNKEY'
-   CMD: set SECRET_KEY=YOUROWNKEY
-   Powershell: $env:SECRET_KEY = "YOUROWNKEY"
+    ```
+    Linux: export SECRET_KEY='YOUROWNKEY'
+    CMD: set SECRET_KEY=YOUROWNKEY
+    Powershell: $env:SECRET_KEY = "YOUROWNKEY"
+    ```
 
 5. Start the server:  
     ```
