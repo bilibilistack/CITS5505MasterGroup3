@@ -10,6 +10,16 @@
     <link rel="stylesheet" href="{{ url_for( 'static', filename='login/login.css') }}">
 </head>
 <body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <script>
+          var messages = {{ messages|tojson|safe }};
+          messages.forEach(function(item) {
+            alert(item[1]);
+          });
+        </script>
+      {% endif %}
+    {% endwith %}
     <div class="container">
         <div class="form-container">
             <h1>Sign in</h1>

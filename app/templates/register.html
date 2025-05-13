@@ -11,15 +11,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- Flash messages display area -->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-            {% for category, message in messages %}
-              <div class="alert alert-{{ category }}">{{ message }}</div>
-            {% endfor %}
-          {% endif %}
-        {% endwith %}
-        
         <!-- Form container that holds the registration form -->
         <div class="form-container">
             <!-- Page heading -->
