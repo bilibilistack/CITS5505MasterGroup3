@@ -1,8 +1,12 @@
 import csv
 import datetime
+import subprocess
+import sys
 from flask import Blueprint, request, jsonify
 from werkzeug.utils import secure_filename
 from app.models import db, WeatherData  # Assuming WeatherData is the model for storing weather data
+from flask_socketio import emit
+from app import socketio
 
 # Define a blueprint for upload-related routes
 upload_bp = Blueprint('upload', __name__)
@@ -42,6 +46,22 @@ def upload_file():
             return jsonify({'error': f'An error occurred: {str(e)}'}), 500
     else:
         return jsonify({'error': 'Invalid file type. Only CSV files are allowed'}), 400
+
+
+@socketio.on('run_getweather')
+def handle_run_getweather():
+    process = subprocess.Popen(
+        [sys.executable, '-u', 'app/GetWeather.py'],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        bufsize=1,
+        universal_newlines=True
+    )
+    for line in iter(process.stdout.readline, ''):
+        emit('getweather_output', {'data': line.rstrip()})
+    process.stdout.close()
+    process.wait()
+    emit('getweather_output', {'data': '[GetWeather.py finished]'})
 
 def verify_csv_format(reader):
     """Verify the format of the CSV file."""

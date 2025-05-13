@@ -1,6 +1,6 @@
-from app import application
+from app import application, socketio
 
 
 # Main entry point of the application
 if __name__ == '__main__':
-    application.run(debug=True)
+    socketio.run(application, debug=True)

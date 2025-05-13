@@ -80,6 +80,7 @@ body {
     transition: background-color 0.3s;
     margin: 0.3rem 0;
     border-left: 3px solid transparent;
+    position: relative;
 }
 
 .sidebar-nav .nav-item:hover {
@@ -110,6 +111,7 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
     opacity: 0;
+    position: relative;
 }
 
 .sidebar.collapsed ~ .show-sidebar-btn {
@@ -236,4 +238,28 @@ body {
     .show-sidebar-btn {
         opacity: 1;
     }
+}
+
+.unread-bubble {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #ef4444;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    min-width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    border-radius: 9px;
+    padding: 0 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.nav-item .unread-bubble {
+    right: 70px;
+    top: 50%;
+    transform: translateY(-50%);
 }

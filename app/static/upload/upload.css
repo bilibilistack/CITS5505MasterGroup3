@@ -150,3 +150,42 @@
 .preview-table tr:hover {
     background-color: #f9f9f9;
 }
+/* Add style for getweather-btn to match upload-button */
+.getweather-btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #3b82f6;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+    border: none;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+}
+
+.getweather-btn:hover {
+    background-color: #2563eb;
+}
+
+.getweather-section {
+    margin-top: 60px;
+}
+
+.getweather-progress-container {
+    margin-top: 20px;
+}
+
+.getweather-progress-textarea {
+    width: 100%;
+    padding: 6px;
+    height: 100px;
+    resize: vertical;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    color: #333;
+}
