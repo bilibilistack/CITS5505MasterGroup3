@@ -27,7 +27,7 @@ def login():
             session['user_id'] = user.id
             session['username'] = user.username
             print(f"User {user.username} logged in!")
-            return render_template('redirect.html', target_url=url_for('homechart'))
+            return render_template('redirect.html', target_url=url_for('main.homechart'))
         else:
             form.password.errors.append('Invalid credentials!')
     return render_template('login.html', form=form)
@@ -35,7 +35,7 @@ def login():
 @auth_bp.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('intro'))
+    return redirect(url_for('main.intro'))
 
 
 # Force login for all routes below this decorator

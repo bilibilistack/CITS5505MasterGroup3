@@ -65,7 +65,7 @@ def get_shares_for_user():
     user_id = session.get('user_id')
 
     if not user_id:
-        return redirect(url_for('login'))
+        return redirect(url_for('auth.login'))
     
         # Join Share and User to get username
     sharedata = (
