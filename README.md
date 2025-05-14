@@ -82,7 +82,7 @@ CITS5505Group3/
     ```
 3. Install required modules:  
     ```
-    pip install flask flask-Migrate Flask-SQLAlchemy flask-login WTForms flask-socketio requests pandas email_validator
+    pip install flask flask-Migrate Flask-SQLAlchemy flask-login WTForms flask-socketio requests pandas email_validator selenium
     ```
 4. For the first time, run in the codebase root directory:  
     ```
@@ -90,15 +90,33 @@ CITS5505Group3/
     ```
 
 5. Add SECRET_KEY to ENV (Please replace with your own key string!):
+
+    Linux: 
     ```
-    Linux: export SECRET_KEY='YOUROWNKEY'
-    CMD: set SECRET_KEY=YOUROWNKEY
-    Powershell: $env:SECRET_KEY = "YOUROWNKEY"
+    export SECRET_KEY='YOUROWNKEY'
+    ```
+    CMD: 
+    ```
+    set SECRET_KEY=YOUROWNKEY
+    ```
+    Powershell: 
+    ```
+    $env:SECRET_KEY = "YOUROWNKEY"
     ```
 
 5. Start the server:  
     ```
     python start_server.py
+    ```
+6. To Run test of Website:
+
+    Unit Test:
+    ```
+    python -m unittest test.unitTests
+    ```
+    System Test: 
+    ```
+    python -m unittest test.systemTests
     ```
 
 Once the server is running, open your browser and visit:  
