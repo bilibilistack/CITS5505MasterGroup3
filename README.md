@@ -82,7 +82,7 @@ CITS5505Group3/
     ```
 3. Install required modules:  
     ```
-    pip install flask flask-Migrate Flask-SQLAlchemy flask-login WTForms flask-socketio requests pandas email_validator selenium
+    pip install flask flask-Migrate Flask-SQLAlchemy flask-login flask-wtf WTForms flask-socketio requests pandas email_validator selenium
     ```
 4. For the first time, run in the codebase root directory:  
     ```
