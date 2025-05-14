@@ -56,6 +56,10 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     const markersLayer = L.layerGroup().addTo(map);
     const resourcesBaseUrl = "/static/chart/resources"; // Base URL for resources
+
+    // // Data Loading (legacy code, faster to use local data))
+    // const cities = await fetch(`${resourcesBaseUrl}/city_lat_lon.json`).then(r => r.json());
+    // const weatherData = await fetch(`${resourcesBaseUrl}/wa_weather_data.json`).then(r => r.json());
     
     // Data Loading (api from db)
     const weatherData = await fetch('/api/weather_data').then(r => r.json());
@@ -66,9 +70,9 @@ document.addEventListener('DOMContentLoaded', async function () {
     const minDate = dates.reduce((a, b) => a < b ? a : b);
     const maxDate = dates.reduce((a, b) => a > b ? a : b);
     const today = new Date().toISOString().split('T')[0];
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    const tomorrowStr = tomorrow.toISOString().split('T')[0];
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const yesterdayStr = yesterday.toISOString().split('T')[0];
 
     // UI Elements Initialization
     const dateSlider = document.getElementById('date-slider');
@@ -81,15 +85,15 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Date Controls Setup
     const minTimestamp = new Date(minDate).getTime();
     const maxTimestamp = new Date(maxDate).getTime();
-    const tomorrowTimestamp = new Date(tomorrowStr).getTime();
+    const yesterdayTimestamp = new Date(yesterdayStr).getTime();
 
     dateRange.min = minTimestamp;
     dateRange.max = maxTimestamp;
-    dateRange.value = tomorrowTimestamp;
+    dateRange.value = yesterdayTimestamp;
     dateSlider.min = minDate;
     dateSlider.max = maxDate;
-    dateSlider.value = tomorrowStr;
-    selectedDateSpan.textContent = new Date(tomorrowStr).toLocaleDateString();
+    dateSlider.value = yesterdayStr;
+    selectedDateSpan.textContent = new Date(yesterdayStr).toLocaleDateString();
 
     // Marker Functions
     function addWeatherIcon(lat, lng, iconName, weatherData) {
@@ -294,5 +298,5 @@ document.addEventListener('DOMContentLoaded', async function () {
     sidebar.addClass('collapsed');
     checkScreenSize();
     $(window).resize(checkScreenSize);
-    updateMarkers(tomorrowStr);
+    updateMarkers(yesterdayStr);
 });

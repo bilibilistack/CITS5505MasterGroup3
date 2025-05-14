@@ -1,13 +1,24 @@
 import unittest
-from app import application
+from app import create_app
+from app.config import TestingConfig
 from app.models import User
+from app import db
 
 class BasicUnitTests(unittest.TestCase):
 
     def setUp(self):
-        application.config['WTF_CSRF_ENABLED'] = False
-        self.app = application.test_client()
+        self.application = create_app(config=TestingConfig)
+        self.application.config['WTF_CSRF_ENABLED'] = False
+        self.app_context = self.application.app_context()
+        self.app_context.push()
+        db.create_all()
+        self.app = self.application.test_client()
         self.app.testing = True
+
+    def tearDown(self):
+        db.session.remove()
+        db.drop_all()
+        self.app_context.pop()
 
     def test_user_model_fields(self):
         """Test if User model fields can be assigned and password is set properly"""
@@ -19,7 +30,7 @@ class BasicUnitTests(unittest.TestCase):
     def test_invalid_login(self):
         """Test that login with empty username and password fails"""
         response = self.app.post('/login', data={'username': '', 'password': ''})
-        self.assertIn(b'Invalid', response.data)
+        self.assertIn(b'This field is required.', response.data)
 
     def test_register_returns_page(self):
         """Test if the register page loads successfully"""

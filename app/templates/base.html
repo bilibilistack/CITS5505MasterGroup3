@@ -26,16 +26,16 @@
             </div>
             <div class="sidebar-content">
                 <nav class="sidebar-nav">
-                    <a href="{{ url_for('homechart') }}" class="nav-item" id="nav-visualization">
+                    <a href="{{ url_for('main.homechart') }}" class="nav-item" id="nav-visualization">
                         <i class="nav-icon home-icon"></i>
                         <span class="nav-text">Home</span>
                     </a>
-                    <a href="{{ url_for('upload') }}" class="nav-item" id="nav-upload">
+                    <a href="{{ url_for('main.upload') }}" class="nav-item" id="nav-upload">
                         <i class="nav-icon upload-icon"></i>
                         <span class="nav-text">Upload</span>
                     </a>
                     <!-- Add unread bubbles to the sidebar -->
-                    <a href="{{ url_for('share') }}" class="nav-item" id="nav-share">
+                    <a href="{{ url_for('main.share') }}" class="nav-item" id="nav-share">
                         <i class="nav-icon share-icon"></i>
                         <span class="nav-text">Share</span>
                         <span class="unread-bubble" id="sidebar-unread" style="display: none;">0</span>

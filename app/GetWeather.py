@@ -6,8 +6,9 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from app.upload_routes import insert_data_into_db
-from app import application 
 import csv
+from app import create_app
+from app.config import DevelopmentConfig
 
 # Define cities around WA
 city_coords = [
@@ -140,6 +141,7 @@ final_df.to_json(json_file_path, orient="records", date_format="iso")
 print(" Latest Weather Data csv and json from -60 Days to + 7 Days are saved to server for backup", flush=True)
 
 # --- Execute upload logic ---
+application = create_app(config=DevelopmentConfig)
 with application.app_context():
     with open(csv_file_path, newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
