@@ -77,31 +77,6 @@
 
     {% block extra_end_js %}{% endblock %}
     
-    <script>
-        function fetchUnreadCount() {
-            $.ajax({
-                url: '/unread',
-                type: 'GET',
-                success: function(response) {
-                    if (response.unread_count > 0) {
-                        $('#hamburger-unread').text(response.unread_count).show();
-                        $('#sidebar-unread').text(response.unread_count).show();
-                    } else {
-                        $('#hamburger-unread').hide();
-                        $('#sidebar-unread').hide();
-                    }
-                },
-                error: function() {
-                    console.error('Failed to fetch unread count');
-                }
-            });
-        }
-
-        $(document).ready(function() {
-            fetchUnreadCount();
-            
-            setInterval(fetchUnreadCount, 5000);
-        });
-    </script>
+    <script src="{{ url_for('static', filename='chart/base.js') }}"></script>
 </body>
 </html>

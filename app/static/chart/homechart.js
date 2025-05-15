@@ -78,9 +78,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     const dateSlider = document.getElementById('date-slider');
     const dateRange = document.getElementById('date-range');
     const selectedDateSpan = document.getElementById('selected-date');
-    const sidebar = $('#sidebar');
-    const toggleBtn = $('#toggle-sidebar');
-    const showSidebarBtn = $('#show-sidebar');
 
     // Date Controls Setup
     const minTimestamp = new Date(minDate).getTime();
@@ -199,25 +196,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     dateSlider.addEventListener('change', (e) => updateDate(e.target.value));
     dateRange.addEventListener('input', (e) => updateDate(Number(e.target.value)));
     
-    // Sidebar Event Handlers
-    toggleBtn.on('click', () => sidebar.addClass('collapsed'));
-    showSidebarBtn.on('click', () => sidebar.removeClass('collapsed'));
-    
-    $(document).on('click', function (e) {
-        if (!$(e.target).closest('#sidebar').length &&
-            !$(e.target).closest('#show-sidebar').length &&
-            sidebar.is(':visible') &&
-            !sidebar.hasClass('collapsed')) {
-            sidebar.addClass('collapsed');
-        }
-    });
-
-    function checkScreenSize() {
-        if (window.innerWidth <= 768) {
-            sidebar.addClass('collapsed');
-        }
-    }
-
     // Travel Tips Button Handler
     document.getElementById('get-tips-btn').addEventListener('click', async function() {
         const cityName = selectedCity;
@@ -294,9 +272,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         window.location.href = `/share?${params}`;
     });
 
-    // Initial Setup
-    sidebar.addClass('collapsed');
-    checkScreenSize();
-    $(window).resize(checkScreenSize);
+    // Initialize and run
     updateMarkers(yesterdayStr);
 });
