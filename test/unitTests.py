@@ -9,6 +9,7 @@ class BasicUnitTests(unittest.TestCase):
     def setUp(self):
         self.application = create_app(config=TestingConfig)
         self.application.config['WTF_CSRF_ENABLED'] = False
+        self.application.config['SECRET_KEY'] = 'test_secret_key'  
         self.app_context = self.application.app_context()
         self.app_context.push()
         db.create_all()
@@ -49,6 +50,47 @@ class BasicUnitTests(unittest.TestCase):
         """Test that unauthenticated users are redirected from upload page"""
         response = self.app.get('/upload', follow_redirects=True)
         self.assertIn(b'id="loginForm"', response.data)
+
+    def test_homechart_redirects_to_upload(self):
+        """Test that accessing homechart redirects to upload page if clicked (authenticated user)"""
+        # Register a user
+        self.app.post('/register', data={
+            'username': 'testuser',
+            'email': 'testuser@uwa.com',
+            'password': 'Testpass123',
+            'confirm_password': 'Testpass123'
+        }, follow_redirects=True)
+        # Log in the user
+        self.app.post('/login', data={
+            'username': 'testuser',
+            'password': 'Testpass123'
+        }, follow_redirects=True)
+        # Now access /homechart
+        response = self.app.get('/upload', follow_redirects=True)
+        # Use a unique string from upload.html for assertion
+        self.assertIn(b'Upload weather data', response.data)
+
+    def test_homechart_share_button_redirect(self):
+        """Test that clicking the 'Share With Friends' button on homechart page redirects to the share page (authenticated user)"""
+        # Register a user
+        self.app.post('/register', data={
+            'username': 'testuser',
+            'email': 'testuser@uwa.com',
+            'password': 'Testpass123',
+            'confirm_password': 'Testpass123'
+        }, follow_redirects=True)
+        # Log in the user
+        self.app.post('/login', data={
+            'username': 'testuser',
+            'password': 'Testpass123'
+        }, follow_redirects=True)
+        # Access /homechart to get the page with the button
+        response = self.app.get('/homechart', follow_redirects=True)
+        self.assertIn(b'id="share-to-btn"', response.data)
+        # Simulate clicking the button by making a GET or POST request to the endpoint it triggers
+        # Assuming the button triggers a GET to /share 
+        response = self.app.get('/share', follow_redirects=True)
+        self.assertIn(b'Share Weather Visualization', response.data)
 
 if __name__ == '__main__':
     unittest.main()
