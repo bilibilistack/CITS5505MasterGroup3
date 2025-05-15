@@ -3,47 +3,6 @@ $(document).ready(function () {
     const dropArea = $('#drop-area');
     const fileInput = $('#file-input');
 
-    // Sidebar related
-    const sidebar = $('#sidebar');
-    const toggleBtn = $('#toggle-sidebar');
-    const showSidebarBtn = $('#show-sidebar');
-
-    // Initialize the sidebar
-    sidebar.addClass('collapsed');
-
-    // Collapse Sidebar
-    toggleBtn.on('click', function () {
-        sidebar.addClass('collapsed');
-    });
-
-    // Expand Sidebar
-    showSidebarBtn.on('click', function () {
-        sidebar.removeClass('collapsed');
-    });
-
-    // hide sidebar when clicking outside of it
-    $(document).on('click', function (e) {
-        if (!$(e.target).closest('#sidebar').length &&
-            !$(e.target).closest('#show-sidebar').length &&
-            sidebar.is(':visible') &&
-            !sidebar.hasClass('collapsed')) {
-            sidebar.addClass('collapsed');
-        }
-    });
-
-    // Add responsive design to the sidebar
-    function checkScreenSize() {
-        if (window.innerWidth <= 768) {
-            sidebar.addClass('collapsed');
-        }
-    }
-
-    // Check screen size
-    checkScreenSize();
-    $(window).resize(checkScreenSize);
-
-    // File drop area and file input elements
-
     // Prevent browser default behavior for drag and drop events
     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
         dropArea.on(eventName, function (e) {
@@ -166,7 +125,7 @@ $(document).ready(function () {
                 console.error('Error:', error);
             }
         });
-        sidebar.removeClass('collapsed');// Show sidebar after file upload automatically to let jump to other pages
+        $('#sidebar').removeClass('collapsed');// Show sidebar after file upload automatically to let jump to other pages
     }
 
     // Preview CSV file
