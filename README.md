@@ -82,7 +82,7 @@ CITS5505Group3/
     ```
 3. Install required modules:  
     ```
-    pip install flask flask-Migrate Flask-SQLAlchemy flask-login flask-wtf WTForms flask-socketio requests pandas email_validator selenium
+    pip install -r requirements.txt
     ```
 4. For the first time, run in the codebase root directory:  
     ```
@@ -146,11 +146,17 @@ Press **CTRL+C** to quit.
 
 2. **Why does the webpage show "RuntimeError: A secret key is required to use CSRF"?**  
     Follow step 5 in the instructions to add a secret key to the environment.
-
+---
 ## 🌐 Website Preview
 
 ![Homepage](introduction_images/Homepage.png)
 
+---
+## 📚 References
+
+- Weather data is fetched using the [Open-Meteo API](https://open-meteo.com/). Special thanks to Open-Meteo for providing this service.
+- Map visualizations in this project are powered by [Leaflet.js](https://leafletjs.com/). We appreciate their excellent library.
+- Portions of the code and tests were developed with the assistance of generative AI tools, including Microsoft Copilot and ChatGPT 4.0.
 
 
 
