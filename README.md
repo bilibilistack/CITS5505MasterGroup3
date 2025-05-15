@@ -82,7 +82,7 @@ CITS5505Group3/
     ```
 3. Install required modules:  
     ```
-    pip install flask flask-Migrate Flask-SQLAlchemy flask-login flask-wtf WTForms flask-socketio requests pandas email_validator selenium
+    pip install -r requirements.txt
     ```
 4. For the first time, run in the codebase root directory:  
     ```
@@ -104,20 +104,15 @@ CITS5505Group3/
     $env:SECRET_KEY = "YOUROWNKEY"
     ```
 
-5. Start the server:  
+6.  load demo data, run:  
+    ```
+    python load_demo_data.py
+    ```
+7.  Start the server:  
     ```
     python start_server.py
     ```
-6. To Run test of Website:
 
-    Unit Test:
-    ```
-    python -m unittest test.unitTests
-    ```
-    System Test: 
-    ```
-    python -m unittest test.systemTests
-    ```
 
 Once the server is running, open your browser and visit:  
 👉 [http://127.0.0.1:5000](http://127.0.0.1:5000)
@@ -126,9 +121,16 @@ Once the server is running, open your browser and visit:
 
 ## 🧪 Instructions for Running Tests
 
-To load demo data, run:  
+To run tests for the website:
+
+### Unit Tests:
+```bash
+python -m unittest test.unitTests
 ```
-python load_demo_data.py
+
+### System Tests:
+```bash
+python -m unittest test.systemTests
 ```
 
 ---
@@ -137,12 +139,24 @@ python load_demo_data.py
 
 Press **CTRL+C** to quit.
 
----
+## ❓ Frequently Asked Questions:
 
+1. **Why can't I see any weather marks on the homechart page?**  
+    Ensure you have loaded the demo data, which includes the city list and location information in the database, and restart the server. The weather fetch API only updates the weather and does not modify the predefined city list.
+
+2. **Why does the webpage show "RuntimeError: A secret key is required to use CSRF"?**  
+    Follow step 5 in the instructions to add a secret key to the environment.
+---
 ## 🌐 Website Preview
 
 ![Homepage](introduction_images/Homepage.png)
 
+---
+## 📚 References
+
+- Weather data is fetched using the [Open-Meteo API](https://open-meteo.com/). Special thanks to Open-Meteo for providing this service.
+- Map visualizations in this project are powered by [Leaflet.js](https://leafletjs.com/). We appreciate their excellent library.
+- Portions of the code and tests were developed with the assistance of generative AI tools, including Microsoft Copilot and ChatGPT 4.0.
 
 
 

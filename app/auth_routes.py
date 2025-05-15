@@ -3,6 +3,7 @@ from app.models import User
 from app.models import db
 from app.forms import LoginForm, RegisterForm
 from functools import wraps
+from app.controllers import register_user, authenticate_user
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -10,10 +11,10 @@ auth_bp = Blueprint('auth', __name__)
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        new_user = User(username=form.username.data, email=form.email.data)
-        new_user.set_password(form.password.data)
-        db.session.add(new_user)
-        db.session.commit()
+        user, error = register_user(form.username.data, form.email.data, form.password.data)
+        if error:
+            flash(error, 'danger')
+            return render_template('register.html', form=form)
         flash('Registration successful! Please log in.', 'success')
         return redirect(url_for('auth.login'))
     return render_template('register.html', form=form)
@@ -22,14 +23,14 @@ def register():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
-        if user and user.check_password(form.password.data):
+        user, error = authenticate_user(form.username.data, form.password.data)
+        if user:
             session['user_id'] = user.id
             session['username'] = user.username
             print(f"User {user.username} logged in!")
             return render_template('redirect.html', target_url=url_for('main.homechart'))
         else:
-            form.password.errors.append('Invalid credentials!')
+            form.password.errors.append(error)
     return render_template('login.html', form=form)
 
 @auth_bp.route('/logout')
