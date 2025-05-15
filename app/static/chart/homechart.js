@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         bounceAtZoomLimits: true,
         inertia: true
     }).setView([perthLat, perthLng], 7);
-    
+
     // Add OpenStreetMap tile layer
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     // // Data Loading (legacy code, faster to use local data))
     // const cities = await fetch(`${resourcesBaseUrl}/city_lat_lon.json`).then(r => r.json());
     // const weatherData = await fetch(`${resourcesBaseUrl}/wa_weather_data.json`).then(r => r.json());
-    
+
     // Data Loading (api from db)
     const weatherData = await fetch('/api/weather_data').then(r => r.json());
     const cities = await fetch('/api/city_lat_lon').then(r => r.json());
@@ -122,10 +122,20 @@ document.addEventListener('DOMContentLoaded', async function () {
         marker.on('mouseout', function (e) {
             setTimeout(() => { this.closePopup(); }, 2000);
         });
-        marker.on('click', function(e) {
+        marker.on('click', function (e) {
             selectedCity = weatherData.city;
             updateForecastSeries(dateSlider.value);
             document.querySelector('.content-box h2').textContent = `Weather Forecast - ${selectedCity}`;
+
+            // Clear spotsList and tipsList
+            const tipsList = document.getElementById('travel-tips-list');
+            const spotsList = document.getElementById('main-spots-list');
+            tipsList.innerHTML = '';
+            spotsList.innerHTML = '';
+            const tipsSection = document.getElementById('travel-tips-section');
+            const spotsSection = document.getElementById('main-spots-section');
+            tipsSection.style.display = 'none';
+            spotsSection.style.display = 'none';
         });
 
         return marker;
@@ -135,10 +145,10 @@ document.addEventListener('DOMContentLoaded', async function () {
     function updateForecastSeries(selectedDate) {
         const dates = [];
         const currentDate = new Date(selectedDate);
-        
+
         currentDate.setDate(currentDate.getDate() - 1);
         dates.push(currentDate.toISOString().split('T')[0]);
-        
+
         currentDate.setDate(currentDate.getDate() + 1);
         for (let i = 0; i < 4; i++) {
             dates.push(currentDate.toISOString().split('T')[0]);
@@ -152,7 +162,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 const iconName = getWeatherIconName(weather.weather, weather.is_day);
                 const forecastDay = forecastDays[index];
                 forecastDay.querySelector('.forecast-icon').src = `${resourcesBaseUrl}/animated_weather/${iconName}.svg`;
-                forecastDay.querySelector('.forecast-temp').textContent = 
+                forecastDay.querySelector('.forecast-temp').textContent =
                     `${weather.temp_min}°C ~ ${weather.temp_max}°C`;
             }
         });
@@ -176,7 +186,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     wind_speed: weather.wind_speed || 'N/A',
                     wind_direction: weather.wind_direction || ''
                 };
-                
+
                 const marker = addWeatherIcon(lat, lon, iconName, weatherInfo);
                 marker.addTo(markersLayer);
             }
@@ -195,9 +205,9 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Event Listeners
     dateSlider.addEventListener('change', (e) => updateDate(e.target.value));
     dateRange.addEventListener('input', (e) => updateDate(Number(e.target.value)));
-    
+
     // Travel Tips Button Handler
-    document.getElementById('get-tips-btn').addEventListener('click', async function() {
+    document.getElementById('get-tips-btn').addEventListener('click', async function () {
         const cityName = selectedCity;
         const tipsList = document.getElementById('travel-tips-list');
         const spotsList = document.getElementById('main-spots-list');
@@ -250,23 +260,23 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
 
     // Share Button Handler
-    document.getElementById('share-to-btn').addEventListener('click', function() {
+    document.getElementById('share-to-btn').addEventListener('click', function () {
         // Get selected city and date
         const city = encodeURIComponent(selectedCity);
         const date = encodeURIComponent(document.getElementById('date-slider').value);
-    
+
         // Find the weather data for the selected city and date
         const weather = weatherData.find(w => w.city === selectedCity && w.date === date);
         let params = `city=${city}&date=${date}`;
         if (weather) {
             const iconName = getWeatherIconName(weather.weather, weather.is_day);
             params +=
-            `&temperature_low=${encodeURIComponent(weather.temp_min || 'N/A')}` +
-            `&temperature_high=${encodeURIComponent(weather.temp_max || 'N/A')}` +
-            `&weather_description=${encodeURIComponent(iconName.split('-')[0] || 'N/A')}` +
-            `&wind_speed=${encodeURIComponent(weather.wind_speed || 'N/A')}` +
-            `&wind_direction=${encodeURIComponent(weather.wind_direction || '')}` +
-            `&icon_name=${encodeURIComponent(iconName)}`;
+                `&temperature_low=${encodeURIComponent(weather.temp_min || 'N/A')}` +
+                `&temperature_high=${encodeURIComponent(weather.temp_max || 'N/A')}` +
+                `&weather_description=${encodeURIComponent(iconName.split('-')[0] || 'N/A')}` +
+                `&wind_speed=${encodeURIComponent(weather.wind_speed || 'N/A')}` +
+                `&wind_direction=${encodeURIComponent(weather.wind_direction || '')}` +
+                `&icon_name=${encodeURIComponent(iconName)}`;
         }
         // Redirect to /share with all parameters
         window.location.href = `/share?${params}`;
