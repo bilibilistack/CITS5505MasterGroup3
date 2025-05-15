@@ -65,29 +65,92 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-#date-slider {
-    width: 200px;
-    font-size: 1.2rem;
-}
-
 #date-control-container {
     position: absolute;
-    bottom: 20px;
+    bottom: 30px;
     left: 30%;
     transform: translateX(-50%);
     z-index: 1000;
-    background: white;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    min-width: 300px;
+    gap: 15px;
+    min-width: 320px;
+    border: 1px solid rgba(128, 163, 180, 0.3);
+    transition: all 0.3s ease;
+}
+
+#date-control-container:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+#date-slider {
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 10px;
+    border: 1px solid #80a3b4;
+    border-radius: 8px;
+    color: #455a64;
+    background-color: #f9fcff;
+    text-align: center;
+    transition: border 0.2s;
+}
+
+#date-slider:focus {
+    outline: none;
+    border-color: #455a64;
+    box-shadow: 0 0 0 2px rgba(128, 163, 180, 0.25);
 }
 
 #date-range {
     width: 100%;
+    height: 10px;
+    border-radius: 5px;
+    appearance: none;
+    background: linear-gradient(to right, #80a3b4, #455a64);
+    outline: none;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+#date-range:hover {
+    opacity: 1;
+}
+
+#date-range::-webkit-slider-thumb {
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #80a3b4;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s;
+}
+
+#date-range::-webkit-slider-thumb:hover {
+    background: #f0f8ff;
+    transform: scale(1.1);
+}
+
+#date-range::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #80a3b4;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s;
+}
+
+#date-range::-moz-range-thumb:hover {
+    background: #f0f8ff;
+    transform: scale(1.1);
 }
 
 /* Weather detail bubble */
@@ -128,9 +191,9 @@
     flex-direction: column;
     align-items: center;
     padding: 5px;
-    height: 100%; /* Ensure consistent height */
-    justify-content: space-between; /* Distribute content evenly */
-    text-align: center; /* Center-align text */
+    height: 100%;
+    justify-content: space-between;
+    text-align: center;
 }
 
 .forecast-date {
@@ -154,7 +217,7 @@
     font-size: 1.3rem;
     padding: 16px 36px;
     border: none;
-    background: #80a3b4; /* blue-grey */
+    background: #80a3b4;
     color: #fff;
     border-radius: 8px;
     cursor: pointer;
