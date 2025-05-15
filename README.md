@@ -75,14 +75,30 @@ CITS5505Group3/
 
 1. Install **Python 3.13** 🐍.
 2. Create and activate your Python environment (optional):  
-    ```
+
+    ```bash
     python -m venv application-env
-    cd application-env/Scripts
-    activate.bat (cmd) or activate.ps1 (PowerShell) or activate (bash)
     ```
+
+    Activate the virtual environment:  
+
+    - **For CMD**:  
+      ```cmd
+      application-env\Scripts\activate.bat
+      ```
+
+    - **For PowerShell**:  
+      ```powershell
+      application-env\Scripts\activate.ps1
+      ```
+
+    - **For Bash (Linux/Mac)**:  
+      ```bash
+      source application-env/bin/activate
+      ```
 3. Install required modules:  
     ```
-    pip install -r requirements.txt
+    python -m pip install -r requirements.txt
     ```
 4. For the first time, run in the codebase root directory:  
     ```
@@ -91,15 +107,15 @@ CITS5505Group3/
 
 5. Add SECRET_KEY to ENV (Please replace with your own key string!):
 
-    Linux: 
+    - **For Bash (Linux/Mac)**:  
     ```
     export SECRET_KEY='YOUROWNKEY'
     ```
-    CMD: 
+    - **For CMD**:  
     ```
     set SECRET_KEY=YOUROWNKEY
     ```
-    Powershell: 
+    - **For PowerShell**:  
     ```
     $env:SECRET_KEY = "YOUROWNKEY"
     ```
