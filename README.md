@@ -58,13 +58,16 @@ CITS5505Group3/
 │   │   ├── upload/                 # Static files for the file upload page
 │   │   │   ├── upload.css          # Styles for the file upload page
 │   │   │   ├── upload.js           # JavaScript for handling file uploads
-│   ├── instance/                   # Folder for SQLite database and instance-specific files
-│       ├── application.db          # SQLite database file, will be generated but excluded from git
-├── demo/                           # Demo folder for testing or showcasing the app
-│   ├── app.py                      # Entry point for running the demo application
-│   ├── README.md                   # Instructions for running the demo
+├── instance/                       # Folder for SQLite database and instance-specific files
+│   ├── application.db              # Generated SQLite database file, excluded from git
+├── migrations/                     # Flask migration folder
+├── test/                           # Test scripts folder
+│   ├── systemTests.py              # Selenium System test
+│   ├── unitTests.py                # Unit test
+├── introduction_images/            # README img files
 ├── README.md                       # Project overview and instructions for running the application
 ├── load_demo_data.py               # Clean database and load demo user, city, and weather data
+├── requirements.txt                # pip install requirements
 ├── start_server.py                 # Start server using python start_server.py
 ├── .gitignore                      # Specifies files and folders to ignore in version control
 ```
