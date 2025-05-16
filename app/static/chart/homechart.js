@@ -74,6 +74,8 @@ document.addEventListener('DOMContentLoaded', async function () {
     const dateSlider = document.getElementById('date-slider');
     const dateRange = document.getElementById('date-range');
     const selectedDateSpan = document.getElementById('selected-date');
+    const dateButton = document.getElementById('date-button');
+    const dateControlContainer = document.getElementById('date-control-container');
 
     // Date Controls Setup
     const minTimestamp = new Date(minDate).getTime();
@@ -90,24 +92,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (selectedDateSpan) {
         selectedDateSpan.textContent = new Date(yesterdayStr).toLocaleDateString();
     }
-
-    // Add date button to the page if it doesn't exist yet
-    if (!document.getElementById('date-button')) {
-        const dateButton = document.createElement('button');
-        dateButton.id = 'date-button';
-        dateButton.title = '选择日期';
-        dateButton.innerHTML = '<i>📅</i>';
-        document.body.appendChild(dateButton);
-    }
-
-    // Date button toggle functionality
-    const dateButton = document.getElementById('date-button');
-    const dateControlContainer = document.getElementById('date-control-container');
-    
-    // Hide date control container initially
-    if (dateControlContainer) {
-        dateControlContainer.style.display = 'none';
-    }
     
     // Toggle date control visibility on button click
     dateButton.addEventListener('click', function(e) {
@@ -117,7 +101,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     
     // Hide date control when clicking elsewhere
     document.addEventListener('click', function(event) {
-        if (dateControlContainer && dateControlContainer.classList.contains('active') && 
+        if (dateControlContainer.classList.contains('active') && 
             !dateControlContainer.contains(event.target) && 
             event.target !== dateButton) {
             dateControlContainer.classList.remove('active');
