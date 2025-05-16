@@ -1,6 +1,6 @@
 # 🌦️ Perth Regional Weather Map 🌏
 
-This website helps users make travel plans by visualizing weather in regional areas. 🌤️ Users can import weather data from the Internet or upload CSV files to easily find places with appealing weather. 🌈 Weather updates can also be shared with friends registered on the website, who will receive them in their share message center. 📩
+This website helps users make travel plans by visualizing weather in Perth regional areas. 🌤️ Users can import weather data from the Internet or upload CSV files to easily find places with appealing weather. 🌈 Weather updates can also be shared with friends registered on the website, who will receive them in their share message center. 📩
 
 ---
 
@@ -48,7 +48,7 @@ CITS5505Group3/
 │   │   │   ├── base.css            # Shared styles for the entire application
 │   │   ├── login/                  # Static files for the login page
 │   │   │   ├── login.css           # Styles for the login page
-│   │   │   ├── home.js             # JavaScript for login and registration
+│   │   │   ├── login.js            # JavaScript for login after registration
 │   │   │   ├── intro.css           # Styles for the intro page
 │   │   │   ├── register.css        # Styles for the registration page
 │   │   │   ├── main.css            # Styles for the login and registration page

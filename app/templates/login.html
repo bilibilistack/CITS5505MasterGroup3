@@ -8,16 +8,13 @@
     <link rel="stylesheet" href="{{ url_for( 'static', filename='login/main.css') }}">
     <!-- Import login-specific stylesheet -->
     <link rel="stylesheet" href="{{ url_for( 'static', filename='login/login.css') }}">
+    <!-- Import main.js for login page -->
+    <script src="{{ url_for('static', filename='login/login.js') }}" defer></script>
 </head>
 <body>
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
-        <script>
-          var messages = {{ messages|tojson|safe }};
-          messages.forEach(function(item) {
-            alert(item[1]);
-          });
-        </script>
+        <div id="flashed-messages" data-messages='{{ messages|tojson|safe }}'></div>
       {% endif %}
     {% endwith %}
     <div class="container">
