@@ -6,11 +6,6 @@
     padding: 20px;
 }
 
-/* #map {
-    height: 100vh;
-    width: 100%;
-} */
-
 .map-container {
     background-color: white;
     border-radius: 10px;
@@ -44,6 +39,7 @@
     
     .map-container {
         width: 100%;
+        padding-bottom: 30px;
     }
     
     .content-box {
@@ -67,9 +63,6 @@
 
 #date-control-container {
     position: absolute;
-    bottom: 30px;
-    left: 30%;
-    transform: translateX(-50%);
     z-index: 1000;
     background: #ffffff;
     padding: 20px;
@@ -81,6 +74,33 @@
     min-width: 320px;
     border: 1px solid rgba(128, 163, 180, 0.3);
     transition: all 0.3s ease;
+}
+
+/* Large screens (computers) */
+@media (min-width: 1025px) {
+    #date-control-container {
+        bottom: 30px;
+        right: 30px;
+        left: auto;
+        transform: none;
+        width: 320px;
+        margin-right: 5px;
+    }
+}
+
+/* Small screens (phones) */
+@media (max-width: 1024px) {
+    #date-control-container {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        left: auto;
+        transform: none;
+        width: 100%;
+        margin: 0 auto;
+        margin-top: -15px;
+        margin-bottom: 15px;
+    }
 }
 
 #date-control-container:hover {
