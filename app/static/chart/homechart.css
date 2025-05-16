@@ -71,10 +71,10 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-    background-color: #80a3b4;
+    background-color: #baca5e9f;
     color: white;
     border: none;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
@@ -92,13 +92,27 @@
 }
 
 #date-button i {
-    font-size: 24px;
+    font-size: 35px;
 }
-
+#date-tip-bubble {
+    display: none;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 90px;
+    height: 140px;
+    background: #f5e2ba;
+    color: #333;
+    border-radius: 8px;
+    padding: 8px 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 1000;
+    font-size: 1rem;
+}
 /* Date control container styles */
 #date-control-container {
     position: fixed;
-    bottom: 80px;
+    bottom: 110px;
     right: 20px;
     z-index: 1000;
     background: #ffffff;

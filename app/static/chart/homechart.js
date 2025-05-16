@@ -277,6 +277,22 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     });
 
+    // Calendar Tip bubble positioning logic (move here so DOM and CSS are ready)
+    setTimeout(function() {
+        var bubble = document.getElementById('date-tip-bubble');
+        var dateBtn = document.getElementById('date-button');
+        if (bubble && dateBtn) {
+            var btnRect = dateBtn.getBoundingClientRect();
+            bubble.style.position = 'fixed';
+            bubble.style.left = (btnRect.left ) + 'px';
+            bubble.style.top = (btnRect.top - bubble.offsetHeight - 150) + 'px'; 
+            bubble.style.display = 'block';
+            setTimeout(function() {
+                bubble.style.display = 'none';
+            }, 3000);
+        }
+    }, 0);
+
     // Share Button Handler
     document.getElementById('share-to-btn').addEventListener('click', function () {
         // Get selected city and date
