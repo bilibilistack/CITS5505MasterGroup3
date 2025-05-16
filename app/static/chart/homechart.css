@@ -6,6 +6,11 @@
     padding: 20px;
 }
 
+/* #map {
+    height: 100vh;
+    width: 100%;
+} */
+
 .map-container {
     background-color: white;
     border-radius: 10px;
@@ -15,6 +20,7 @@
     flex: 1;
     width: calc(100%);
     min-height: 200px;
+    position: relative; /* Added for positioning date control inside */
 }
 /* Content box styles - update position properties */
 .content-box {
@@ -76,15 +82,14 @@
     transition: all 0.3s ease;
 }
 
-/* Large screens (computers) */
+/* Large screens (computers in landscape mode) */
 @media (min-width: 1025px) {
     #date-control-container {
-        bottom: 30px;
-        right: 30px;
+        bottom: 40px; /* Position from bottom of map */
+        right: 40px; /* Position from right of map */
         left: auto;
         transform: none;
         width: 320px;
-        margin-right: 5px;
     }
 }
 
