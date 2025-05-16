@@ -39,7 +39,7 @@ def logout():
     return redirect(url_for('main.intro'))
 
 
-# Force login for all routes below this decorator
+# Force login for all routes
 def login_required(f):
     @wraps(f)  # Use wraps to preserve the original function's metadata
     def wrapper(*args, **kwargs):  # Accept any arguments passed to the wrapped function
