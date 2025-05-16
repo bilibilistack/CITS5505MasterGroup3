@@ -263,3 +263,8 @@ body {
     top: 50%;
     transform: translateY(-50%);
 }
+
+#selected-date {
+    font-weight: bold;
+    font-size: 1.3rem;
+}
