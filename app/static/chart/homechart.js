@@ -57,10 +57,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     const markersLayer = L.layerGroup().addTo(map);
     const resourcesBaseUrl = "/static/chart/resources"; // Base URL for resources
 
-    // // Data Loading (legacy code, faster to use local data))
-    // const cities = await fetch(`${resourcesBaseUrl}/city_lat_lon.json`).then(r => r.json());
-    // const weatherData = await fetch(`${resourcesBaseUrl}/wa_weather_data.json`).then(r => r.json());
-
     // Data Loading (api from db)
     const weatherData = await fetch('/api/weather_data').then(r => r.json());
     const cities = await fetch('/api/city_lat_lon').then(r => r.json());
@@ -90,7 +86,43 @@ document.addEventListener('DOMContentLoaded', async function () {
     dateSlider.min = minDate;
     dateSlider.max = maxDate;
     dateSlider.value = yesterdayStr;
-    selectedDateSpan.textContent = new Date(yesterdayStr).toLocaleDateString();
+    
+    if (selectedDateSpan) {
+        selectedDateSpan.textContent = new Date(yesterdayStr).toLocaleDateString();
+    }
+
+    // Add date button to the page if it doesn't exist yet
+    if (!document.getElementById('date-button')) {
+        const dateButton = document.createElement('button');
+        dateButton.id = 'date-button';
+        dateButton.title = '选择日期';
+        dateButton.innerHTML = '<i>📅</i>';
+        document.body.appendChild(dateButton);
+    }
+
+    // Date button toggle functionality
+    const dateButton = document.getElementById('date-button');
+    const dateControlContainer = document.getElementById('date-control-container');
+    
+    // Hide date control container initially
+    if (dateControlContainer) {
+        dateControlContainer.style.display = 'none';
+    }
+    
+    // Toggle date control visibility on button click
+    dateButton.addEventListener('click', function(e) {
+        e.stopPropagation(); // Prevent click from propagating
+        dateControlContainer.classList.toggle('active');
+    });
+    
+    // Hide date control when clicking elsewhere
+    document.addEventListener('click', function(event) {
+        if (dateControlContainer && dateControlContainer.classList.contains('active') && 
+            !dateControlContainer.contains(event.target) && 
+            event.target !== dateButton) {
+            dateControlContainer.classList.remove('active');
+        }
+    });
 
     // Marker Functions
     function addWeatherIcon(lat, lng, iconName, weatherData) {
@@ -198,7 +230,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         const dateStr = new Date(date).toISOString().split('T')[0];
         dateSlider.value = dateStr;
         dateRange.value = new Date(date).getTime();
-        selectedDateSpan.textContent = new Date(date).toLocaleDateString();
+        if (selectedDateSpan) {
+            selectedDateSpan.textContent = new Date(date).toLocaleDateString();
+        }
         updateMarkers(dateStr);
     }
 
